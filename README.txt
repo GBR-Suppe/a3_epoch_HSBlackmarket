@@ -43,10 +43,10 @@ createvehicle.txt   Line 2   add:
 !="smallbackpack_red_epoch" !="smallbackpack_green_epoch" !="smallbackpack_teal_epoch" !="smallbackpack_pink_epoch"
 
 publicvariable.txt    Line 1   add:
-!="BIS_fnc_objectVar_obj2_1288" !="HALV_takegive"
+!="BIS_fnc_objectVar_obj2_1288" !="HALV_takegive" !="HSPV_traderrequest"
 
 setvariable.txt   Line 1   add:
-!="bis_fnc_objectvar_var" = "BIS_fnc_objectVar_obj2_1280"
+!="bis_fnc_objectvar_var" !="BIS_fnc_objectVar_obj2_1280"
 
 scripts.txt      7 createDialog    add:
 !="createDialog "HS_trader_dialog";"
