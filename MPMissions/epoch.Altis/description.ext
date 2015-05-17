@@ -1,0 +1,98 @@
+#include "trader\tradedialog.hpp"
+#include "trader\CfgPricing.hpp"
+
+author = "Epoch Mod Team";
+class Header
+{
+ gameType = Sandbox;
+ minPlayers = 1;
+ maxPlayers = 100;
+};
+respawn = "BASE";
+respawnDelay = 600;
+respawnDialog = 0;
+
+onLoadMission= "Epoch";
+OnLoadIntro = "Welcome to Epoch Mod";
+loadScreen = "\x\addons\a3_epoch_assets\pictures\loadScreen_ca.paa"; 
+OnLoadIntroTime = False;
+OnLoadMissionTime = False;
+onLoadName = "Epoch Mod";
+disabledAI = true;
+scriptedPlayer = 1;
+disableChannels[]={0,1,2,6};
+enableItemsDropping = 0;
+briefing = 0;
+debriefing = 0;
+enableDebugConsole = 0;
+joinUnassigned = 0;
+respawnOnStart = 0;
+forceRotorLibSimulation = 1;
+
+corpseManagerMode = 1;
+corpseLimit = 10;
+corpseRemovalMinTime = 1200;
+corpseRemovalMaxTime = 3600;
+
+wreckManagerMode = 1;
+wreckLimit = 2;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 360;
+
+class CfgRemoteExecCommands {};
+
+class CfgEpochClient
+{
+	buildingNearbyMilitary = 0; //1 to allow building nearby
+	buildingNearbyMilitaryRange = 300; //Define radius of blocked area
+
+	buildingRequireJammer = 0; // 1 = to allow building without a jammer 
+	buildingCountLimit = 200; // how many objects can be built within range of a jammer 
+	buildingJammerRange = 75; // jammer range in meters 
+
+	class Altis
+	{
+		blockedArea[] = { //[POS],radius
+				{ { 16085, 16997, 0 }, 250 }, //South Telos
+				{ { 12844, 16714, 0 }, 120 }, //Soldner Base 
+				{ { 3085, 13184, 0 }, 300 }, //Kavalar Carstel
+				{ { 13493, 12013, 0 }, 450 }, //Makrynisi (Island)
+				{ { 17439, 13165, 0 }, 165 }, //Pyrgorsk Military
+				{ { 20084, 6728, 0 }, 55 }, //West of Selakano
+				{ { 25303, 21807, 0 }, 100 } //Sofia	
+		};
+	};
+	class Chernarus
+	{
+		blockedArea[] = {
+				{ { 10203, 1886, 0 }, 430 }, //South Electro
+				{ { 6822, 2498, 0 }, 600 }, //Cherno
+				{ { 4612, 9670, 0 }, 140 }, //NWAF south barack
+				{ { 4907, 10117, 0 }, 250 }, //NWAF NE hangas
+				{ { 4707, 10384, 0 }, 200 }, //NWAF north barack
+				{ { 4069, 10778, 0 }, 75 }, //NWAF west hangas
+				{ { 4553, 10722, 0 }, 150 }, //NWAF NW hangas
+				{ { 12279, 9505, 0 }, 350 }, //Berenzino Mid
+				{ { 12816, 9816, 0 }, 400 }, //Berenzino SE
+				{ { 12991, 10147, 0 }, 375 }, //Berenzino Docs
+				{ { 2693, 5138, 0 }, 200 }, //Zeleno
+				{ { 11467, 7508, 0 }, 150 }, //Polana Factory
+				{ { 13092, 7096, 0 }, 140 } //Solnichniy Factory
+		};
+	};
+};
+
+class CfgEpochSapper
+{
+	detonateDistMax = 8; //Random distance between 3m and this number at which sapper detonates. Min value = 4
+	groanTrig = 16; //Percentage chance of a groan. Min value = 4
+	sRange = 300; //Distance from target over which sapper will dispose. Range within which sapper code will be aware of targets. Distance up to which sapper will attempt to find a spot to hide in. Min Value = 150.
+	smellDist = 24; //Distance up to which sapper can smell. Used to decide if sapper can see target when deciding to charge and influences target selection. Is influenced by wind direction. Min Value = 8.
+};
+
+class CfgEpochUAV
+{
+	UAVMinDist = 48; //Minimum distance to choose next position when roaming. Min Value = 8.
+	UAVMaxDist = 180; //Maximum distance to choose next position when roaming. Min Value = 42 / Max Value = 400.
+	UAVHeight = 100; //Set height when roaming, slight randomness is applied to this value. UAV will choose own height when locked onto target. Min Value = 42 / Max Value = 280. UAV can still spot targets from height !
+};
