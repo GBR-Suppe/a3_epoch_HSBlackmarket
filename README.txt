@@ -10,6 +10,8 @@ This is the first release, please report bugs.
 Features:
 - Trader with Costum Dialog (Menu)
 - Trader with unlimited supply
+- Trader will spawn random over the Map
+- Trader will spawn in 5 different "Camps"
 - Easily edit/add Prices, Items, Vehicles, Weapons...
 - Easily Blacklist Items, Vehicles, Weapons...
 - Static and Random Traders
