@@ -694,7 +694,11 @@ HS_confirmtrade = {
 		_price = 0;
 		
 		{
-			_price = _price + ((HS_trader_itemlist select _x) select 1);
+			_itemWorth = ((HS_trader_itemlist select _x) select 1);
+			_itemTax = ((HS_trader_itemlist select _x) select 2);
+			_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
+			_calced = ceil(_itemWorth + _tax);
+			_price = _price + _calced;
 			diag_log format["%1",_x];
 		}forEach HS_BUYSELLARRAY;
 		if(EPOCH_playerCrypto >= _price && _price != 0)then{
