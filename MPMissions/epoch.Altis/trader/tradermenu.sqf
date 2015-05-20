@@ -82,6 +82,7 @@ HS_trader_menu = {
 				_info = _x call HS_fnc_returnnameandpic;
 		//damage price reductions, the price is divded by this number
 				_obj = _HS_nearvehicles select _forEachIndex;
+				if(_obj getVariable ["HSHALFPRICE",0] == 1)then{_price = _price/2;};
 				_damagepricereduction = switch(true)do{
 							//damaged over 90%
 					case ((damage _obj) > 0.9):{10};
@@ -242,7 +243,7 @@ HS_trader_menu = {
 //				diag_log format["%1",_x];
 				switch(_x select 8)do{
 					case "AssaultRifle":{
-						if((_x select 0) in ["ChainSaw","m107_EPOCH","m107Tan_EPOCH","m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F"])then{
+						if((_x select 0) in ["ChainSaw","m107_EPOCH","m107Tan_EPOCH","m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"])then{
 							switch (true)do{
 								case ((_x select 0) == "ChainSaw"):{
 									_index = _ctrl tvAdd [[0,5],_x select 4];
@@ -252,7 +253,7 @@ HS_trader_menu = {
 									_index = _ctrl tvAdd [[0,3],_x select 4];
 									_path = [0,3,_index];
 								};
-								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F"]):{
+								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"]):{
 									_index = _ctrl tvAdd [[0,2],_x select 4];
 									_path = [0,2,_index];
 								};
@@ -689,7 +690,6 @@ HS_confirmtrade = {
 		};
 		HALV_takegive = [player,_return];
 		publicVariableServer "HALV_takegive";
-		player switchMove "AinvPknlMstpSlayWrflDnon_medic";
 	}else{
 		_price = 0;
 		

@@ -40,7 +40,8 @@ switch(_type)do{
 					case ((damage _obj) > 0.25):{1.5};
 					default {1};
 				};
-				if(_vehSlot !="ABORT")then{
+				_isNOTrental = if(_obj getVariable ["HSHALFPRICE",0] == 0)then{true}else{false};
+				if(_vehSlot !="ABORT" && _isNOTrental)then{
 					_message = _message + format["%1 is OK to sell, dam: %2 pricemod: %3 || ",_x select 4,damage _obj,_damagepricereduction];
 					removeFromRemainsCollector[_obj];
 					deleteVehicle _obj;
@@ -169,12 +170,14 @@ switch(_type)do{
 			HalvPV_player_message = ["titleText", ["[Warning]:\nThis vehicle will disappear on server restart!", "PLAIN DOWN"]];
 			owner(_this select 2) publicVariableClient "HalvPV_player_message";
 		}];
+		_veh setVariable["VEHICLE_SLOT","ABORT",true];
+		_veh setVariable["HSHALFPRICE",1,true];
 		_itemWorth = ((_arr select 1)/2);
 		_itemTax = (_arr select 2);
 		_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
 		_calced = ceil(_itemWorth + _tax);
 		[_player,_calced*-1]call HALV_server_takegive_crypto;
-		_message = format["You Bought a Temporary %1, it is 'unlocked' so watch out for theeves!",_arr select 4];
+		_message = format["You Rented a Temporary %1 untill next restart\nIt is 'unlocked' so watch out for thieves!",_arr select 4];
 		diag_log format["[HSBlackmarket] %1 | %2",_player,_arr];
 	};
 };
