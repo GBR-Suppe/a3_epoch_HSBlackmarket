@@ -3,27 +3,9 @@
 	init.sqf
 	by Halv & Suppe
 */
-
-//if any static cords are set here, there will be a trader at that exact position and direction
-_staticCoords = switch(toLower worldName)do{
-	case "altis":{
-		[
-		/*	[[pos,i,tion],direction,createmarker,props]*/
-			[[18459.1,14259.2,0.00141716],340.199], //trader by mine
-			[[13319,14523.9,0.00134587],143.067], //trader by stavros
-			[[6193.02,16828.7,0.00118256],1.52142] //trader by kore
-		]
-	};
-	case "stratis":{[]};
-	case "bornholm":{[]};
-	case "chernarus":{[]};
-	default{[]};
-};
+private ["_staticCoords","_blacklistedAreas","_spawnarea"];
 
 _agent = "I_G_resistanceLeader_F";
-
-//distance to search for trader positions
-_spawnarea = 17500;
 
 _spawnnearroad = true;
 
@@ -34,14 +16,31 @@ _tradercount = round(random 4)+6;
 //min distance from other traders in meters, dont go to higher than _spawnarea/(_tradercount+1) or script will just revert back to this amount to avoid problems 
 _mindist = 4000;
 //marker text for traders
-_markertext = "HS Blackmarket";
+_markertext = "HS Blackmarket";			// "" for empty, then is only the blue dot on the map
 
-_blacklistedAreas = switch (toLower worldName)do{
-	case "altis":{[[[18459.1,14259.2,0.00141716],1000],[[12570.8,14320.2,4.67927],1000],[[6193.02,16828.7,0.00118256],1000]]};
-	case "stratis":{[[[0,0,0],0]]};
-	case "bornholm":{[[[0,0,0],0]]};
-	case "chernarus":{[[[0,0,0],0]]};
-	default{[[[0,0,0],0]]};
+//if _staticCoords are set here, there will be a trader at that exact position and direction,
+//_blacklistedAreas is where random blackmarkets cannot spawn
+switch(toLower worldName)do{
+	case "altis":{
+		_staticCoords = [
+//			[traderposition,direction,createmarker,props[classname,position,direction]]
+//			"full" array
+//			[[0,0,0],0,true,[["classname1",[1,1,1],1],["classname2",[2,2,2],2]]]
+//			minimal array
+//			[[0,0,0],0]
+			[[18459.1,14259.2,0.00141716],340.199], //trader by mine
+			[[13319,14523.9,0.00134587],143.067], //trader by stavros
+			[[6193.02,16828.7,0.00118256],1.52142] //trader by kore
+		];
+											/*[position,area]*/
+		_blacklistedAreas = [[[18459.1,14259.2,0.00141716],1000],[[12570.8,14320.2,4.67927],1000],[[6193.02,16828.7,0.00118256],1000]];
+		//distance to search for trader positions
+		_spawnarea = 12500;
+	};
+	case "stratis":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 6000;};
+	case "bornholm":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 12500;};
+	case "chernarus":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 7000;};
+	default{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 7000;};
 };
 
 //============================== DONT TOUCH ANYTHING BELOW THIS POINT ==============================\\
@@ -290,7 +289,7 @@ if(isServer) then{
 		diag_log "[HSBlackmarket]: HSBlackmarket Creating a Marker";
 		_marker = createMarker [format["HSBlackmarket_%1",_i], _coords];
 		_marker setMarkerShape "ICON";
-		_marker setMarkerType "hd_dot";			// "hd_pickup"
+		_marker setMarkerType "hd_dot";		// "hd_pickup"
 		_marker setMarkerText _markertext;
 		_marker setMarkerColor "ColorWEST";
 		_units pushBack _unit;
