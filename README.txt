@@ -58,3 +58,8 @@ scripts.txt      7 addItem    add:
 !="_this call HS_additemtolb;false"
 scripts.txt      7 exec    add:
 !="trader\init.sqf";"
+
+- for infistar
+add these: 9999,9980 to the allowedDialogs.
+
+like this: _allowedDialogs = [-1,602,7777,7778,9999,9980];
