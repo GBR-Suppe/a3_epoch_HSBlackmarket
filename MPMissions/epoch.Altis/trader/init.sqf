@@ -16,30 +16,60 @@ _tradercount = round(random 4)+6;
 //min distance from other traders in meters, dont go to higher than _spawnarea/(_tradercount+1) or script will just revert back to this amount to avoid problems 
 _mindist = 4000;
 //marker text for traders
-_markertext = "HS Blackmarket";			// "" for empty, then is only the blue dot on the map
+_markertext = "HS Blackmarket";
+//texture on the flag (has to be 200x200), "" to disable
+_flagtexture = "trader\dkflagpole.jpg";
+//texture on the sign, "" to disable
+_sigtexture = "trader\trader.jpg";
 
 //if _staticCoords are set here, there will be a trader at that exact position and direction,
 //_blacklistedAreas is where random blackmarkets cannot spawn
 switch(toLower worldName)do{
 	case "altis":{
 		_staticCoords = [
-//			[traderposition,direction,createmarker,props[classname,position,direction]]
-//			"full" array
-//			[[0,0,0],0,true,[["classname1",[1,1,1],1],["classname2",[2,2,2],2]]]
-//			minimal array
-//			[[0,0,0],0]
-			[[18459.1,14259.2,0.00141716],340.199], //trader by mine
-			[[13319,14523.9,0.00134587],143.067], //trader by stavros
-			[[6193.02,16828.7,0.00118256],1.52142] //trader by kore
+/*
+			[traderposition,direction,createmarker,props[classname,position,direction]]
+			//"full" array
+			[[0,0,0],0,true,[["classname1",[1,1,1],1],["classname2",[2,2,2],2]]]
+			//minimal array
+			[[0,0,0],0]
+*/
+			[[18459.1,14259.2,0],340.199,false], //trader by mine
+			[[13319,14523.9,0],143.067,false], //trader by stavros
+			[[6193.02,16828.7,0],1.52142,false] //trader by kore
 		];
-											/*[position,area]*/
-		_blacklistedAreas = [[[18459.1,14259.2,0.00141716],1000],[[12570.8,14320.2,4.67927],1000],[[6193.02,16828.7,0.00118256],1000]];
+		_blacklistedAreas = [
+							/*[position,area]*/
+			[[18451.9, 14278.1, 0],500],
+			[[13326.5, 14515.2, 0],500],
+			[[6192.46, 16834, 0],500]
+		];
 		//distance to search for trader positions
 		_spawnarea = 12500;
 	};
-	case "stratis":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 6000;};
-	case "bornholm":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 12500;};
-	case "chernarus":{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 7000;};
+	case "stratis":{_staticCoords = [];_blacklistedAreas = [[[4089.82, 4597.71, 0],500]];_spawnarea = 6000;};
+	case "bornholm":{
+		_staticCoords = [];
+		_blacklistedAreas = [
+			[[14121.2,11331.5,0],500],
+			[[1322.18,8733.92,0],500],
+			[[15639.3,191.995,0],500]
+		];
+		_spawnarea = 12500;
+	};
+	case "chernarus":{
+		_staticCoords = [
+			[[4584.02,4521.47,0],180.729,false],//trader by Kozlovka
+			[[12076.8,5112.95,0],281.836,false],//trader between Msta & Tulga
+			[[10676.7,9437.48,0],120.482,false] //trader by Dubrovka
+		];
+		_blacklistedAreas = [
+			[[4569.52, 4524.24, 0],500],
+			[[12077.8, 5121.92, 0],500],
+			[[10688.6, 9428.98, 0],500]
+		];
+		_spawnarea = 7000;
+	};
 	default{_staticCoords = [];_blacklistedAreas = [[[0,0,0],0]];_spawnarea = 7000;};
 };
 
@@ -79,14 +109,12 @@ if(isServer) then{
 	if(_blacklistedAreas isEqualTo [[[0,0,0],0]])then{
 		diag_log format["[HSBlackmarket]: no blacklisted areas found for world: %1",worldName];
 	}else{
-		diag_log format["[HSBlackmarket]: Selecting blacklisted areas for world: %1",worldName];
+		diag_log format["[HSBlackmarket]: Selected blacklisted areas for world: %1",worldName];
 	};
-
 	if(_mindist > _spawnarea/(_tradercount+1))then{
 		_mindist = _spawnarea/(_tradercount+1);
 		diag_log format["[HSBlackmarket]: Reverted _mindist '%1' to avoid problems",_mindist];
 	};
-
 	_units = [];
 	_allcords = [];
 	for "_i" from 1 to _tradercount do {
@@ -110,7 +138,6 @@ if(isServer) then{
 		};
 		_allcords pushBack _coords;
 		diag_log format["[HSBlackmarket]: Found position for a HSBlackmarket ... (%1) %2",mapGridPosition _coords,_coords];
-
 		_randir = (random 360);
 	//	diag_log format["[HSBlackmarket]: _roadlist: %1 _roadlist: %2",_randir,_roadlist];
 		if(count _roadlist > 0)then{
@@ -281,9 +308,9 @@ if(isServer) then{
 				case "O_CargoNet_01_ammo_F":{clearBackpackCargoGlobal _obj;clearItemCargoGlobal _obj;clearMagazineCargoGlobal _obj;clearWeaponCargoGlobal _obj;};
 				case "Land_Campfire_F":{_obj = createVehicle ["Land_ClutterCutter_medium_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
 				case "Land_Ground_sheet_blue_F":{_obj = createVehicle ["Land_ClutterCutter_large_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
-				case "Flag_ARMEX_F":{_obj setFlagTexture "trader\dkflagpole.jpg";};
+				case "Flag_ARMEX_F":{if(_flagtexture != "")then{_obj setFlagTexture _flagtexture;};};
 				case "Land_HelipadEmpty_F":{_obj = createVehicle ["Land_ClutterCutter_large_F", _pos, [], 0, "CAN_COLLIDE"];_obj setPos _pos;};
-				case "SignAd_Sponsor_F":{_obj setObjectTextureGlobal [0, "trader\trader.jpg"];};//apply diffrent texture to the sign at some point
+				case "SignAd_Sponsor_F":{if(_sigtexture != "")then{_obj setObjectTextureGlobal [0,_sigtexture];};};
 			};
 		}forEach _objects;
 		diag_log "[HSBlackmarket]: HSBlackmarket Creating a Marker";
@@ -338,7 +365,6 @@ if(isServer) then{
 			}forEach _objs;
 		};
 	}forEach _staticCoords;
-
 	HSPV_HSBlackmarket = _units;
 	publicVariable "HSPV_HSBlackmarket";
 	diag_log "[HSBlackmarket] Server Done ...";
@@ -353,5 +379,4 @@ if(hasInterface)then{
 	call compile preprocessFileLineNumbers "trader\tradermenu.sqf";
 	diag_log "[HSBlackmarket]: Client Done ...";
 };
-
 
