@@ -127,6 +127,7 @@ switch(_type)do{
 		_veh setVariable["VEHICLE_SLOT",_slot,true];
 		_veh call EPOCH_server_save_vehicle;
 		_veh call EPOCH_server_vehicleInit;
+		_veh call HS_weaponsrestriction;
 
 		_itemWorth = (_arr select 1);
 		_itemTax = (_arr select 2);
@@ -172,6 +173,7 @@ switch(_type)do{
 			_veh setVariable["VEHICLE_TEXTURE",_color];
 		};
 		_veh call EPOCH_server_vehicleInit;
+		_veh call HS_weaponsrestriction;
 		_veh addEventHandler ["GetIn",{
 			HalvPV_player_message = ["titleText", ["[Warning]:\nThis vehicle will disappear on server restart!", "PLAIN DOWN"]];
 			owner(_this select 2) publicVariableClient "HalvPV_player_message";

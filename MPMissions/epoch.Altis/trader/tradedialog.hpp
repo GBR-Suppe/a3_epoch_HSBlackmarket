@@ -60,7 +60,7 @@ class HS_RscListBox
 	colorSelect2[] = {0, 0, 0, 1};
 	colorSelectBackground[] = {0.95, 0.95, 0.95, 1};
 	colorSelectBackground2[] = {1, 1, 1, 0.5};
-	colorBackground[] = {.2,.2,.2,.6};
+	colorBackground[] = {0.2,0.2,0.2,0.6};
 	pictureColor[] = {1,1,1,1}; // Picture color
 	pictureColorSelect[] = {1,1,1,1}; // Selected picture color
 	pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
@@ -96,57 +96,44 @@ class HS_CT_TREE
 	access = 0; // Control access (0 - ReadAndWrite, 1 - ReadAndCreate, 2 - ReadOnly, 3 - ReadOnlyVerified)
 	type = CT_TREE; // Type is 12
 	style = ST_LEFT; // Style
-
 	x = 0.35567 * safezoneW + safezoneX;
 	y = 0.137091 * safezoneH + safezoneY;
 	w = 0.438144 * safezoneW;
 	h = 0.725818 * safezoneH;
-
 	colorBorder[] = {0,.5,1,.8}; // Frame color
-
-	colorBackground[] = {.2,.2,.2,.6};
+	colorBackground[] = {0.2,0.2,0.2,0.6}; // Fill color
 	colorSelect[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 0)
 	colorMarked[] = {1,0.5,0,0.5}; // Marked item fill color (when multiselectEnabled is 1)
 	colorMarkedSelected[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 1)
-
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-//	sizeEx = 0.045; // Text size
 	font = "EtelkaMonospacePro"; // Font from CfgFontFamilies
 	shadow = 1; // Shadow (0 - none, 1 - N/A, 2 - black outline)
 	colorText[] = {1,1,1,1}; // Text color
 	colorSelectText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 0)
 	colorMarkedText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 1)
-
 	tooltip = ""; // Tooltip text
 	tooltipColorShade[] = {0,0,0,1}; // Tooltip background color
 	tooltipColorText[] = {1,1,1,1}; // Tooltip text color
 	tooltipColorBox[] = {1,1,1,1}; // Tooltip frame color
-
 	multiselectEnabled = 0; // Allow selecting multiple items while holding Ctrl or Shift
 	expandOnDoubleclick = 1; // Expand/collapse item upon double-click
 	hiddenTexture = "A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa"; // Expand icon
 	expandedTexture = "A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa"; // Collapse icon
 	maxHistoryDelay = 1; // Time since last keyboard type search to reset it
-
 	// Scrollbar configuration
 	class ScrollBar
 	{
 		width = 0; // width of ScrollBar
 		height = 0; // height of ScrollBar
 //		scrollSpeed = 0.01; // scroll speed of ScrollBar
-
 		arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; // Arrow
 		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; // Arrow when clicked on
 		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa"; // Slider background (stretched vertically)
 		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; // Dragging element (stretched vertically)
-
 		color[] = {1,1,1,1}; // Scrollbar color
 	};
-
 	colorDisabled[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
 	colorArrow[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
-
-
 };
 
 class HS_RscButton
@@ -430,6 +417,7 @@ class HS_trader_dialog2
 			y = 0.401025 * safezoneH + safezoneY;
 			w = 0.154754 * safezoneW;
 			h = 0.043989 * safezoneH;
+//			tooltip = "$STR_HS_PRESSTOBUYHALFPRICE"; //--- ToDo: Localize;
 			action = "call HS_buyvehiclesaved";
 		};
 		class HS_trader_selecttypetemp: HS_RscButton
@@ -440,6 +428,7 @@ class HS_trader_dialog2
 			y = 0.401025 * safezoneH + safezoneY;
 			w = 0.154754 * safezoneW;
 			h = 0.043989 * safezoneH;
+			tooltip = "$STR_HS_PRESSTOBUYHALFPRICE"; //--- ToDo: Localize;
 			action = "call HS_buyvehicletemp";
 		};
 		class HS_trader_checkavai: HS_RscButton

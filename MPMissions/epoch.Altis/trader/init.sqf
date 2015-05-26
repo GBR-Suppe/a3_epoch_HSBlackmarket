@@ -81,6 +81,7 @@ if(isServer) then{
 	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	diag_log "[HSBlackmarket] Server Loading functions";
 	HS_playertraderequest = compileFinal preprocessFileLineNumbers "trader\HS_playertraderequest.sqf";
+	HS_weaponsrestriction = compileFinal preprocessFileLineNumbers "trader\HS_weaponsrestriction.sqf";
 	HALV_PurgeObject = compileFinal preprocessFileLineNumbers "trader\HALV_PurgeObject.sqf";
 	private ["_coords","_roadlist","_firstroad","_statdir"];
 /////////////////////////////////////////////////////////////
@@ -316,7 +317,7 @@ if(isServer) then{
 		diag_log "[HSBlackmarket]: HSBlackmarket Creating a Marker";
 		_marker = createMarker [format["HSBlackmarket_%1",_i], _coords];
 		_marker setMarkerShape "ICON";
-		_marker setMarkerType "hd_dot";		// "hd_pickup"
+		_marker setMarkerType "hd_dot";    // pickup
 		_marker setMarkerText _markertext;
 		_marker setMarkerColor "ColorWEST";
 		_units pushBack _unit;
@@ -379,4 +380,5 @@ if(hasInterface)then{
 	call compile preprocessFileLineNumbers "trader\tradermenu.sqf";
 	diag_log "[HSBlackmarket]: Client Done ...";
 };
+
 

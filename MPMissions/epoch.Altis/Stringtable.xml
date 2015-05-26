@@ -49,14 +49,6 @@
 			<Key ID="STR_HALV_TS3">
 				<Original>TS3: halv.ddns.net:9995</Original>
 				<English>TS3: halv.ddns.net:9995</English>
-				<Czech>TS3: halv.ddns.net:9995</Czech>
-				<French>TS3: halv.ddns.net:9995</French>
-				<German>TS3: halv.ddns.net:9995</German>
-				<Italian>TS3: halv.ddns.net:9995</Italian>
-				<Polish>TS3: halv.ddns.net:9995</Polish>
-				<Portuguese>TS3: halv.ddns.net:9995</Portuguese>
-				<Russian>TS3: </Russian>
-				<Spanish>TS3: halv.ddns.net:9995</Spanish>
 			</Key>
 			<Key ID="STR_HALV_RANDOM">
 				<Original>Random</Original>
@@ -70,17 +62,13 @@
 				<Russian>случайный</Russian>
 				<Spanish>Aleatorio</Spanish>
 			</Key>
-			<Key ID="STR_HALV_SELECT_HALO_OR_GROUND">
-				<Original>Select HALO or Ground Spawn</Original>
-				<English>Select HALO or Ground Spawn</English>
-				<Czech>Vyberte zrození na Zemi nebo Halo-Jump</Czech>
-				<French>Sélectionnez HALO ou Rez Spawn</French>
-				<German>Wähle HALO oder Boden Spawn</German>
-				<Italian>Selezionare HALO o terra Spawn</Italian>
-				<Polish>Wybierz HALO lub mielone Spawn</Polish>
-				<Portuguese>Selecione HALO ou do Spawn do-chão</Portuguese>
-				<Russian>Выберите HALO или наземный спавн</Russian>
-				<Spanish>Seleccione HALO o punto de aparición terrestre</Spanish>
+			<Key ID="STR_HALV_PRESSSELECT_HALO_OR_GROUND">
+				<Original>Click to Switch between HALO or Ground Spawn</Original>
+				<English>Click to Switch between HALO or Ground Spawn</English>
+			</Key>
+			<Key ID="STR_HALV_SELECT_GEAR_OR_SPAWN">
+				<Original>Click to Switch between Gear and Spawn Selection</Original>
+				<English>Click to Switch between Gear and Spawn Selection</English>
 			</Key>
 			<Key ID="STR_HALV_SELECT_GEAR">
 				<Original>Select Gear</Original>
@@ -93,6 +81,10 @@
 				<Portuguese>Selecionar Equipamento</Portuguese>
 				<Russian>Выберите снаряжение</Russian>
 				<Spanish>Seleccione Equipamiento</Spanish>
+			</Key>
+			<Key ID="STR_HALV_NONEEDTOSELECTALL">
+				<Original>You do not need to pick every piece of gear, just select a few and press Select spawn ... you will get random of remaining items</Original>
+				<English>You do not need to pick every piece of gear, just select a few and press Select spawn ... you will get random of remaining items</English>
 			</Key>
 			<Key ID="STR_HALV_HALO">
 				<Original>HALO Spawn</Original>
@@ -135,7 +127,7 @@
 				<English>Ground Spawn Selected</English>
 				<Czech>Zrození na zemi vybráno</Czech>
 				<French>Rez Spawn Sélectionné</French>
-				<German>Boden Spawn ausgewählt</German>
+				<German>Boden Spawn Ausgewählt</German>
 				<Italian>Terra Spawn Selezionato</Italian>
 				<Polish>Spawn Wybrany ziemi</Polish>
 				<Portuguese>Spawn no chão Selecionado</Portuguese>
@@ -183,7 +175,7 @@
 				<English>Scroll and press mouse wheel to open chute ...</English>
 				<Czech>Protočte a stiskněte kolečko myši pro otevření padáku ...</Czech>
 				<French>Faites défiler et appuyez sur la roue de la souris pour ouvrir goulotte ...</French>
-				<German>Mausrad nach unten um den Fallschirm zu öffnen</German>
+				<German>Mausrad nach unten um den fallschirm zu öffnen</German>
 				<Italian>Scorrere e rotella del mouse premere per aprire lo scivolo ...</Italian>
 				<Polish>Przewiń i koło naciśnij myszy, aby otworzyć spadochron ...</Polish>
 				<Portuguese>Scroll e roda de imprensa do mouse para abrir calha ...</Portuguese>
@@ -452,7 +444,7 @@
 				<Italian>Occhiali da sole / occhiali</Italian>
 				<Polish>Rolety / Gogle</Polish>
 				<Portuguese>Tons / óculos de proteção</Portuguese>
-				<Russian>Балаклава / Очки</Russian>
+				<Russian>Оттенки / Очки</Russian>
 				<Spanish>Gafas de sol / Gafas</Spanish>
 			</Key>
 			<Key ID="STR_HALV_BACKPACKS">
@@ -470,108 +462,97 @@
 			</Key>
 		</Container>
 	</Package>
-
 	<Package name="HSBLACKTRADER">
 		<Container name="HS Blackmareket trader strings">
 			<Key ID="STR_HS_TRADERMENU">
 				<Original>HS Trader Menu:</Original>
 				<English>HS Trader Menu:</English>
-				<Czech>HS Trader Menu:</Czech>
-				<French>HS Trader Menu:</French>
-				<German>HS Trader Menu:</German>
-				<Italian>HS Trader Menu:</Italian>
-				<Polish>HS Trader Menu:</Polish>
-				<Portuguese>HS Trader Menu:</Portuguese>
-				<Russian>Меню торговли:</Russian>
-				<Spanish>HS Trader Menu:</Spanish>
 			</Key>
 			<Key ID="STR_HS_BUY_MODE">
 				<Original>Buy Mode</Original>
 				<English>Buy Mode</English>
-				<Russian>Режим покупки</Russian>
 				<French>le mode d'achat</French>
 				<German>Kaufen</German>
+				<Russian>Режим покупки</Russian>
 				<Spanish>modo de compra</Spanish>
 			</Key>
 			<Key ID="STR_HS_SELL_MODE">
 				<Original>Sell Mode</Original>
 				<English>Sell Mode</English>
-				<Russian>Режим продажи</Russian>
 				<French>Mode Vendre</French>
 				<German>Verkaufen</German>
+				<Russian>Режим продажи</Russian>
 				<Spanish>Modo de Venta</Spanish>
 			</Key>
 			<Key ID="STR_HS_CLICK_TOSWITCH">
-				<Original>Click to Switch Between Buy/Sell Mode</Original>
-				<English>Click to Switch Between Buy/Sell Mode</English>
+				<Original>Click to Switch Between Buy / Sell Mode</Original>
+				<English>Click to Switch Between Buy / Sell Mode</English>
+				<French>Cliquez pour basculer entre le mode Achat / Vente</French>
+				<German>Klick um zwischen Kaufen / Verkaufen zu wechseln</German>
 				<Russian>Кликните для переключения режима торговли.</Russian>
-				<French>Cliquez pour basculer entre le mode Achat/Vente</French>
-				<German>Klick um zwischen Kaufen/Verkaufen zu wechseln</German>
-				<Spanish>Haga clic para cambiar entre Comprar/Modo de Venta</Spanish>
+				<Spanish>Haga clic para cambiar entre Comprar / Modo de Venta</Spanish>
 			</Key>
 			<Key ID="STR_HS_CURRENTTRADE">
-				<Original>Current Trade Cost/Resale</Original>
-				<English>Current Trade Cost/Resale</English>
-				<Russian>Текущая стоимость продажи/покупки</Russian>				
-				<French>Coût valeur actuelle/revente</French>
-				<German>Aktuelle Kosten/Verkaufswert</German>
-				<Spanish>Costo/valor actual de reventa</Spanish>
+				<Original>Current Trade Cost / Reward</Original>
+				<English>Current Trade Cost / Reward</English>
+				<French>Coût valeur actuelle / revente</French>
+				<German>Aktuelle Kosten / Verkaufswert</German>
+				<Russian>Текущая стоимость продажи/покупки</Russian>
+				<Spanish>Costo / valor actual de reventa</Spanish>
 			</Key>
 			<Key ID="STR_HS_CONFIRMTRADE">
 				<Original>Confirm Trade</Original>
 				<English>Confirm Trade</English>
-				<Russian>Подтвердить покупку</Russian>
 				<French>Confirmez le commerce</French>
 				<German>Handel bestätigen</German>
+				<Russian>Подтвердить покупку</Russian>
 				<Spanish>confirmar el comercio</Spanish>
 			</Key>
 			<Key ID="STR_HS_CLICKTOCONFIRMTRADE">
 				<Original>Click to Confirm Current Trade</Original>
-				<English>Click to Confirm Current Trade</English>
-				<Russian>Кликните для подтверждения покупки</Russian>
+				<English>Click to Confirm Current Trade</English>	
 				<French>Cliquez sur pour confirmer l'achat</French>
 				<German>Klicke um den kauf zu bestätigen</German>
+				<Russian>Кликните для подтверждения покупки</Russian>
 				<Spanish>Haga clic para confirmar la compra</Spanish>
 			</Key>
 			<Key ID="STR_HS_SELECTHALFORFULLTEXT">
-				<Original>Select Half Price Temporary or Full Price Normal Saved Vehicle:</Original>
-				<English>Select Half Price Temporary or Full Price Normal Saved Vehicle:</English>
-				<Russian>Выбрать технику за пол цены НАПРОКАТ или за полную стоимость с сохранением</Russian>
-				<French>Sélectionnez Moitié prix temporaire ou Full Prix normal Saved Véhicule:</French>
+				<Original>Select 1/2 Price Rent-a-car or Buy Full Price Vehicle:</Original>
+				<English>Select 1/2 Price Rent-a-car or Buy Full Price Vehicle:</English>
+				<French>Sélectionnez Moitié prix temporaire ou Full Prix Véhicule:</French>
 				<German>Halber Preis,Fahrzeug speichert nicht oder voller Preis,Fahrzeug speichert:</German>
-				<Spanish>Seleccione mitad de precio temporal o completa Precio normal Vehículo Guardados:</Spanish>
+				<Spanish>Seleccione mitad de precio temporal o completa Precio Vehículo Guardados:</Spanish>
 			</Key>
 			<Key ID="STR_HS_BUYFULLPRICE">
 				<Original>Buy Full Price Saved Vehicle</Original>
 				<English>Buy Full Price Saved Vehicle</English>
-				<Russian>Купить за полную стоимость сохраняемую технику</Russian>
 				<French>Acheter un véhicule qui est stocké</French>
 				<German>Voller Preis, Fahrzeug speichert</German>
 				<Spanish>Comprar un vehículo que se almacena</Spanish>
 			</Key>
 			<Key ID="STR_HS_BUYHALFPRICE">
-				<Original>Buy Half Price Temp Vehicle</Original>
-				<English>Buy Half Price Temp Vehicle</English>
-				<Russian>Взять напрокат за пол цены</Russian>
-				<French>Acheter un véhicule à moitié prix qui est stocké</French>
-				<German>Halber Preis, Fahrzeug speichert nicht</German>
-				<Spanish>Comprar un vehículo a mitad de precio que se almacena</Spanish>
+				<Original>Rent 1/2 Price Temp Vehicle</Original>
+				<English>Rent 1/2 Price Temp Vehicle</English>
+			</Key>
+			<Key ID="STR_HS_PRESSTOBUYHALFPRICE">
+				<Original>Press to Rent 1/2 Price Vehicle Until next restart</Original>
+				<English>Press to Rent 1/2 Price Vehicle Until next restart</English>
 			</Key>
 			<Key ID="STR_HS_BUYCHECK">
 				<Original>Check Availability</Original>
 				<English>Check Availability</English>
-				<Russian>Проверить наличие</Russian>
 				<French>Vérifier la disponibilité</French>
 				<German>Verfuegbarkeit überprüfen</German>
+				<Russian>Проверить наличие</Russian>
 				<Spanish>Comprobar disponibilidad</Spanish>
 			</Key>
 			<Key ID="STR_HS_PRESSTOCHECK">
-				<Original>Check vehicle world limit</Original>
-				<English>Check vehicle world limit</English>
-				<Russian>Проверить лимит техники</Russian>
+				<Original>Press to Check if you can buy a saved vehicle</Original>
+				<English>Press to Check if you can buy a saved vehicle</English>
 				<French>Appuyez sur pour vérifier la limite du monde du véhicule</French>
 				<German>Fahrzeugworldlimit überprüfen</German>
 				<Spanish>Pulse para comprobar límite mundial de vehículos</Spanish>
+				<Russian>Проверить лимит техники</Russian>
 			</Key>
 			<Key ID="STR_HS_ASSAULTRIFLES">
 				<Original>Assault Rifles</Original>
@@ -581,7 +562,7 @@
 			<Key ID="STR_HS_HANDGUNS">
 				<Original>Hand Guns</Original>
 				<English>Hand Guns</English>
-				<Russian>Пистолет/Ручное</Russian>				
+				<Russian>Пистолет/Ручное</Russian>
 			</Key>
 			<Key ID="STR_HS_MACHINEGUNS">
 				<Original>Machine Guns</Original>
@@ -598,6 +579,10 @@
 				<English>Submachine Guns</English>
 				<Russian>Пистолет-пулеметы</Russian>
 			</Key>
+			<Key ID="STR_HS_LAUNCHERS">
+				<Original>Launchers</Original>
+				<English>Launchers</English>
+			</Key>
 			<Key ID="STR_HS_OTHER">
 				<Original>Other</Original>
 				<English>Other</English>
@@ -608,10 +593,18 @@
 				<English>Ammo / Bullets</English>
 				<Russian>Боезапас / Патроны</Russian>
 			</Key>
+			<Key ID="STR_HS_AMMOROCKETS">
+				<Original>Rockets / Missiles</Original>
+				<English>Rockets / Missiles</English>
+			</Key>
 			<Key ID="STR_HS_BUILDINGSUPP">
 				<Original>Building Supplies</Original>
 				<English>Building Supplies</English>
 				<Russian>Стройматериалы</Russian>
+			</Key>
+			<Key ID="STR_HS_FOOD">
+				<Original>Food</Original>
+				<English>Food</English>
 			</Key>
 			<Key ID="STR_HS_BIPODS">
 				<Original>Bipods</Original>
@@ -734,125 +727,127 @@
 				<Russian>Техника</Russian>
 			</Key>
 			<Key ID="STR_HS_DOUBLECLICKTOADD">
-				<Original>Double click an item to add it to the buy/sell list, switch between buy and sell mode by pressing the Buy/Sell Mode button</Original>
-				<English>Double click an item to add it to the buy/sell list, switch between buy and sell mode by pressing the Buy/Sell Mode button</English>
-				<French>Double-cliquez sur un objet pour l'ajouter dans la liste, changer entre l'achat/vente en appuyant sur le bouton d'achat</French>
-				<German>Doppelklick auf einen Gegenstand um diesen in der Liste zuzufügen, wechsel zwischen Kauf/Verkauf indem du den Kauf Knopf drückst</German>
-				<Spanish>Haga doble clic en un objeto para agregarlo en la lista, cambiar entre la compra/venta al presionar el botón de compra</Spanish>
+				<Original>Double click an item to add it to the buy / sell list, switch between buy and sell mode by pressing the Buy / Sell Mode button</Original>
+				<English>Double click an item to add it to the buy / sell list, switch between buy and sell mode by pressing the Buy / Sell Mode button</English>
+				<French>Double-cliquez sur un objet pour l'ajouter dans la liste, changer entre l'achat / vente en appuyant sur le bouton d'achat</French>
+				<German>Doppelklick auf einen Gegenstand um diesen in der Liste zuzufügen, wechsel zwischen Kauf / Verkauf indem du den Kauf Knopf drückst</German>
 				<Russian>Дважды кликните по предмету для добавления его в список покупки/продажи. Переключиться между покупкой и продажой можно нажатием кнопки Покупка/Продажа</Russian>
+				<Spanish>Haga doble clic en un objeto para agregarlo en la lista, cambiar entre la compra / venta al presionar el botón de compra</Spanish>
+			</Key>
+			<Key ID="STR_HS_PRICE">
+				<Original>Price: %1</Original>
+				<English>Price: %1</English>
+				<Russian>Покупка: %1 - Продажа: %2%3</Russian>
 			</Key>
 			<Key ID="STR_HS_PRICETAX">
-				<Original>Price: %1 - Tax: %2%3</Original>
-				<English>Price: %1 - Tax: %2%3</English>
-				<Russian>Покупка: %1 - Продажа: %2%3</Russian>
-				
+				<Original>Price: %1 - Tax: %2%3 - ServerTax: %4%3</Original>
+				<English>Price: %1 - Tax: %2%3 - ServerTax: %4%3</English>
 			</Key>
 			<Key ID="STR_HS_UNIFORMNOTSOLD">
 				<Original>Your Uniform was not empty ... not sold</Original>
 				<English>Your Uniform was not empty ... not sold</English>
-				<Russian>Твоя одежда не пуста... нельзя продать</Russian>
 				<French>Votre Uniform était pas vide ... pas vendu</French>
 				<German>Deine Uniform ist nicht leer ... wurde nicht verkauft</German>
-				<Spanish>Su Uniform no estaba vacía ... no se vende</Spanish>					
+				<Russian>Твоя одежда не пуста... нельзя продать</Russian>
+				<Spanish>Su Uniform no estaba vacía ... no se vende</Spanish>
 			</Key>
 			<Key ID="STR_HS_VESTNOTSOLD">
 				<Original>Your Vest was not empty ... not sold</Original>
 				<English>Your Vest was not empty ... not sold</English>
-				<Russian>Твоя разгрузка не пуста... нельзя продать</Russian>
 				<French>Votre Vest était pas vide ... pas vendu</French>
 				<German>Deine Weste ist nicht leer ... wurde nicht verkauft</German>
-				<Spanish>Su chaleco no estaba vacía ... no se vende</Spanish>	
+				<Russian>Твоя разгрузка не пуста... нельзя продать</Russian>
+				<Spanish>Su chaleco no estaba vacía ... no se vende</Spanish>
 			</Key>
 			<Key ID="STR_HS_BACKPACKNOTSOLD">
 				<Original>Your Backpack was not empty ... not sold</Original>
 				<English>Your Backpack was not empty ... not sold</English>
-				<Russian>Твой рюкзак не пустой... нельзя продать</Russian>
 				<French>Votre sac à dos était pas vide ... pas vendu</French>
 				<German>Dein Rucksack ist nicht leer ... wurde nicht verkauft</German>
-				<Spanish>Su mochila no estaba vacía ... no se vende</Spanish>				
+				<Russian>Твой рюкзак не пустой... нельзя продать</Russian>
+				<Spanish>Su mochila no estaba vacía ... no se vende</Spanish>
 			</Key>
 			<Key ID="STR_HS_FAILEDTOSELL">
 				<Original>Failed to sell %1 ... not empty!</Original>
 				<English>Failed to sell %1 ... not empty!</English>
-				<Russian>Не удалось продать %1... не пустой!</Russian>
 				<French>Impossible de vendre %1 ... pas vide!</French>
 				<German>Verkauf fehlgeschlagen %1 ... nicht leer</German>
-				<Spanish>Error al vender 1% ... no está vacío!</Spanish>					
+				<Russian>Не удалось продать %1... не пустой!</Russian>
+				<Spanish>Error al vender 1% ... no está vacío!</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYHAVEWEAPON">
 				<Original>You already have a Weapon in the hand ...</Original>
 				<English>You already have a Weapon in the hand ...</English>
-				<Russian>У тебя уже есть оружие в руке!</Russian>
 				<French>Vous avez déjà une arme dans la main ...</French>
 				<German>Sie haben bereits eine Waffe in der Hand ...</German>
-				<Spanish>Ya tiene un arma en la mano ...</Spanish>						
+				<Russian>У тебя уже есть оружие в руке!</Russian>
+				<Spanish>Ya tiene un arma en la mano ...</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYWEARINGBAG">
 				<Original>You are already wearing a Backpack</Original>
 				<English>You are already wearing a Backpack</English>
-				<Russian>Рюкзак уже одет!</Russian>
 				<French>Vous êtes déjà vêtu d'une Backpack</French>
 				<German>Du trägst bereits einen Rucksack</German>
-				<Spanish>Usted ya llevar un Backpack</Spanish>				
+				<Russian>Рюкзак уже одет!</Russian>
+				<Spanish>Usted ya llevar un Backpack</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYWEARINGGLASSES">
 				<Original>You are already Wearing Glasses</Original>
 				<English>You are already Wearing Glasses</English>
-				<Russian>Очки уже одеты...</Russian>
 				<French>Vous êtes déjà vêtu d'une Glasses</French>
 				<German>Du trägst bereits eine Brille</German>
-				<Spanish>Usted ya llevar un Glasses</Spanish>					
+				<Russian>Очки уже одеты...</Russian>
+				<Spanish>Usted ya llevar un Glasses</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYWEARINGHEADGEAR">
 				<Original>You are already Wearing Headgear</Original>
 				<English>You are already Wearing Headgear</English>
-				<Russian>Головной убор уже одет...</Russian>
 				<French>Vous êtes déjà vêtu d'une Headgear</French>
 				<German>Du trägst bereits Headgear</German>
-				<Spanish>Usted ya llevar Headgear</Spanish>						
+				<Russian>Головной убор уже одет...</Russian>
+				<Spanish>Usted ya llevar Headgear</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYWEARINGUNIFORM">
 				<Original>You are already Wearing a Uniform</Original>
 				<English>You are already Wearing a Uniform</English>
 				<French>Vous êtes déjà vêtu d'une uniform</French>
-				<Russian>Форма уже одета</Russian>
 				<German>Du trägst bereits eine Uniform</German>
-				<Spanish>Usted ya llevar un uniform</Spanish>						
+				<Russian>Форма уже одета</Russian>
+				<Spanish>Usted ya llevar un uniform</Spanish>
 			</Key>
 			<Key ID="STR_HS_ALREADYWEARINGVEST">
 				<Original>You are already Wearing a vest</Original>
 				<English>You are already Wearing a vest</English>
-				<Russian>Разгрузка уже одета</Russian>
 				<French>Vous êtes déjà vêtu d'une veste</French>
 				<German>Du trägst bereits eine Veste</German>
-				<Spanish>Usted ya llevar un chaleco</Spanish>					
+				<Russian>Разгрузка уже одета</Russian>
+				<Spanish>Usted ya llevar un chaleco</Spanish>
 			</Key>
 			<Key ID="STR_HS_ONGROUNDNEARYOU">
 				<Original>What you could not have in your inventory is on the ground near you ...</Original>
 				<English>What you could not have in your inventory is on the ground near you ...</English>
-				<Russian>То что не влезло в инвентарь - валяется где то рядом...</Russian>
 				<French>Qu'est-ce que vous ne pourriez pas avoir dans votre inventaire est sur le terrain près de chez vous</French>
 				<German>Item passt nicht ins Iventar, es liegt jetzt auf dem Boden in der nähe</German>
-				<Spanish>Lo que no se podía tener en su inventario está en el suelo cerca de usted</Spanish>		
+				<Russian>То что не влезло в инвентарь - валяется где то рядом...</Russian>
+				<Spanish>Lo que no se podía tener en su inventario está en el suelo cerca de usted</Spanish>
 			</Key>
 			<Key ID="STR_HS_NOTENOGHCRYPTO">
 				<Original>You do not have enough Crypto to buy this ...</Original>
 				<English>You do not have enough Crypto to buy this ...</English>
-				<Russian>Нужно больше Крипто... нищеброд.</Russian>
 				<French>Vous ne disposez pas de suffisamment Crypto</French>
 				<German>Du hast nicht genug Crypto</German>
-				<Spanish>Usted no tiene suficiente Crypto</Spanish>						
+				<Russian>Нужно больше Крипто... нищеброд.</Russian>
+				<Spanish>Usted no tiene suficiente Crypto</Spanish>
 			</Key>
 			<Key ID="STR_HS_NOTALLOWEDTOSPAM">
 				<Original>Not allowed to spam this button, wait another %1 seconds</Original>
 				<English>Not allowed to spam this button, wait another %1 seconds</English>
-				<Russian>Хватить херачить по кнопке, а если я в тебя так потыкаю ?! Подожди хотя бы %1 секунд...</Russian>
 				<French>Non autorisé à spammer ce bouton, attendre une autre %1 secondes</French>
 				<German>Es ist nicht erlaubt den Knopf so oft zu drücken, warte %1 sekunden</German>
-				<Spanish>No se permite el spam en este botón, esperar otro %1 segundo</Spanish>				
+				<Russian>Хватить херачить по кнопке, а если я в тебя так потыкаю ?! Подожди хотя бы %1 секунд...</Russian>
+				<Spanish>No se permite el spam en este botón, esperar otro %1 segundo</Spanish>
 			</Key>
 		</Container>
 	</Package>
-
 </Project>
 

@@ -7,18 +7,19 @@
 #include "settings.sqf";
 
 HS_fnc_returnnameandpic = {
+	_item = _this;
 	_pic = "";
 	_txt = "";
 	_libtxt = "";
 	_type = "";
 	_BIStype = [];
 	{
-		if(isClass(configFile >> _x >> _this))exitWith{
+		if(isClass(configFile >> _x >> _item))exitWith{
 			_type = _x;
-			_pic = (gettext (configFile >> _type >> _this >> "picture"));
-			_txt = (gettext (configFile >> _type >> _this >> "displayName"));
-			_libtxt = (gettext (configFile >> _type >> _this >> "Library" >> "libTextDesc"));
-			_BIStype = _this call BIS_fnc_itemType;
+			_pic = (gettext (configFile >> _type >> _item >> "picture"));
+			_txt = (gettext (configFile >> _type >> _item >> "displayName"));
+			_libtxt = (gettext (configFile >> _type >> _item >> "Library" >> "libTextDesc"));
+			_BIStype = _item call BIS_fnc_itemType;
 		};
 	}count ["cfgweapons","cfgmagazines","cfgvehicles","cfgglasses"];
 	_return = [_type,_txt,_libtxt,_pic,_BIStype select 0,_BIStype select 1];
@@ -35,12 +36,6 @@ for "_i" from 0 to (count _config)-1 do {
 			_price = getNumber(_config >> _item >> "price");
 			_tax = getNumber(_config >> _item >> "tax");
 			_info = _item call HS_fnc_returnnameandpic;
-			if(_info select 0 == "cfgweapons")then{
-				_kindOf = [(configFile >> "CfgWeapons" >> _item),true] call BIS_fnc_returnParents;
-				if ("ItemCore" in _kindOf)then{
-					_info set [0,"hsisitem"];
-				};
-			};
 			HS_trader_itemlist pushBack [_item,_price,_tax,_info select 0,_info select 1,_info select 2,_info select 3,_info select 4,_info select 5];
 		};
 	};
@@ -63,12 +58,12 @@ HS_trader_menu = {
 		}forEach (nearestObjects [player,["Air","Landvehicle","Ship"],60]);
 		HS_PLAYER_itemlist = [];
 		_config = "CfgPricing" call EPOCH_returnConfig;
-		_list = (assignedItems player)+(primaryWeaponItems player)+(handgunItems player)+(secondaryWeaponItems player)+(uniformItems player)+(vestItems player)+(backpackItems player);
+		_list = [];
 		{
 			if(_x != "")then{
 				_list pushBack _x;
 			};
-		}forEach [primaryWeapon player,handgunWeapon player,secondaryWeapon player,uniform player,vest player,backpack player,headgear player,goggles player];
+		}forEach (assignedItems player)+(primaryWeaponItems player)+(handgunItems player)+(secondaryWeaponItems player)+(uniformItems player)+(vestItems player)+(backpackItems player)+[primaryWeapon player,handgunWeapon player,secondaryWeapon player,uniform player,vest player,backpack player,headgear player,goggles player];
 		{
 			_price = getNumber(_config >> _x >> "price");
 			if(_price > 0)then{
@@ -120,6 +115,7 @@ HS_trader_menu = {
 				[localize "STR_HS_MACHINEGUNS","\a3\Ui_f\data\gui\cfg\Hints\ranged_ca.paa"],
 				[localize "STR_HS_SNIPERRIFLES","\a3\Ui_f\data\gui\cfg\Hints\sniper_ca.paa"],
 				[localize "STR_HS_SUBMACHINEGUNS","\a3\Ui_f\data\gui\cfg\Hints\rifles_ca.paa"],
+				[localize "STR_HS_LAUNCHERS","\a3\Ui_f\data\gui\cfg\Hints\launcher_ca.paa"],
 				[localize "STR_HS_OTHER","\a3\Ui_f\data\gui\cfg\Hints\slots_ca.paa"]
 				];
 			};
@@ -131,7 +127,9 @@ HS_trader_menu = {
 					_sp pushBack [_mainindex,_index];
 				}forEach [
 				[localize "STR_HS_AMMOBULLETS","\a3\Ui_f\data\gui\cfg\Hints\firemode_ca.paa"],
+				[localize "STR_HS_AMMOROCKETS","\a3\Ui_f\data\gui\cfg\Hints\ammotype_ca.paa"],
 				[localize "STR_HS_BUILDINGSUPP","\a3\Ui_f\data\gui\Rsc\RscDisplayGarage\animationsources_ca.paa"],
+				[localize "STR_HS_FOOD","\a3\Ui_f\data\gui\Rsc\RscDisplayArcadeMap\section_mission_ca.paa"],
 				[localize "STR_HS_OTHER","\a3\Ui_f\data\gui\cfg\Hints\slots_ca.paa"]
 				];
 			};
@@ -246,8 +244,8 @@ HS_trader_menu = {
 						if((_x select 0) in ["ChainSaw","m107_EPOCH","m107Tan_EPOCH","m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"])then{
 							switch (true)do{
 								case ((_x select 0) == "ChainSaw"):{
-									_index = _ctrl tvAdd [[0,5],_x select 4];
-									_path = [0,5,_index];
+									_index = _ctrl tvAdd [[0,6],_x select 4];
+									_path = [0,6,_index];
 								};
 								case ((_x select 0) in ["m107_EPOCH","m107Tan_EPOCH"]):{
 									_index = _ctrl tvAdd [[0,3],_x select 4];
@@ -265,8 +263,8 @@ HS_trader_menu = {
 					};
 					case "Handgun":{
 						if((_x select 0) in ["Hatchet","CrudeHatchet"])then{
-							_index = _ctrl tvAdd [[0,5],_x select 4];
-							_path = [0,5,_index];
+							_index = _ctrl tvAdd [[0,6],_x select 4];
+							_path = [0,6,_index];
 						}else{
 							_index = _ctrl tvAdd [[0,1],_x select 4];
 							_path = [0,1,_index];
@@ -274,8 +272,8 @@ HS_trader_menu = {
 					};
 					case "MachineGun":{
 						if((_x select 0) in ["Hatchet","CrudeHatchet"])then{
-							_index = _ctrl tvAdd [[0,0],_x select 4];
-							_path = [0,0,_index];
+							_index = _ctrl tvAdd [[0,6],_x select 4];
+							_path = [0,6,_index];
 						}else{
 							_index = _ctrl tvAdd [[0,2],_x select 4];
 							_path = [0,2,_index];
@@ -289,9 +287,33 @@ HS_trader_menu = {
 						_index = _ctrl tvAdd [[0,4],_x select 4];
 						_path = [0,4,_index];
 					};
-					default{
+					case "BombLauncher":{
 						_index = _ctrl tvAdd [[0,5],_x select 4];
 						_path = [0,5,_index];
+					};
+					case "Cannon":{
+						_index = _ctrl tvAdd [[0,5],_x select 4];
+						_path = [0,5,_index];
+					};
+					case "Mortar":{
+						_index = _ctrl tvAdd [[0,5],_x select 4];
+						_path = [0,5,_index];
+					};
+					case "RocketLauncher":{
+						_index = _ctrl tvAdd [[0,5],_x select 4];
+						_path = [0,5,_index];
+					};
+					case "MissileLauncher":{
+						_index = _ctrl tvAdd [[0,5],_x select 4];
+						_path = [0,5,_index];
+					};
+					case "Launcher":{
+						_index = _ctrl tvAdd [[0,5],_x select 4];
+						_path = [0,5,_index];
+					};
+					default{
+						_index = _ctrl tvAdd [[0,6],_x select 4];
+						_path = [0,6,_index];
 					};
 				};
 			};
@@ -299,8 +321,8 @@ HS_trader_menu = {
 				if((_x select 0)in ["ItemLockbox","PaintCanClear","PaintCanBlk","PaintCanBlu","PaintCanBrn","PaintCanGrn","PaintCanOra","PaintCanPur","PaintCanRed",
 				"PaintCanTeal","PaintCanYel","PartPlankPack","CinderBlocks","MortarBucket","ItemScraps","ItemCorrugated","ItemCorrugatedLg","KitStudWall","KitWoodFloor",
 				"KitWoodStairs","KitWoodRamp","KitFirePlace","KitTiPi","KitShelf","KitWoodFoundation","KitFoundation","KitPlotPole","KitCinderWall","WoodLog_EPOCH"])then{
-					_index = _ctrl tvAdd [[1,1],_x select 4];
-					_path = [1,1,_index];
+					_index = _ctrl tvAdd [[1,2],_x select 4];
+					_path = [1,2,_index];
 				}else{
 					switch(_x select 8)do{
 						case "Bullet":{
@@ -308,12 +330,12 @@ HS_trader_menu = {
 							_path = [1,0,_index];
 						};
 						case "Missile":{
-							_index = _ctrl tvAdd [[1,0],_x select 4];
-							_path = [1,0,_index];
+							_index = _ctrl tvAdd [[1,1],_x select 4];
+							_path = [1,1,_index];
 						};
 						case "Rocket":{
-							_index = _ctrl tvAdd [[1,0],_x select 4];
-							_path = [1,0,_index];
+							_index = _ctrl tvAdd [[1,1],_x select 4];
+							_path = [1,1,_index];
 						};
 						case "ShotgunShell":{
 							_index = _ctrl tvAdd [[1,0],_x select 4];
@@ -340,8 +362,18 @@ HS_trader_menu = {
 							_path = [4,4,_index];
 						};
 						default{
-							_index = _ctrl tvAdd [[1,2],_x select 4];
-							_path = [1,2,_index];
+							if((_x select 0) in [
+							"FoodBioMeat","ItemTuna","ItemSodaBurst","CookedChicken_EPOCH","CookedGoat_EPOCH","CookedRabbit_EPOCH","CookedSheep_EPOCH",
+							"SnakeMeat_EPOCH","honey_epoch","meatballs_epoch","ItemSodaMocha","ItemSodaOrangeSherbet","ItemSodaPurple","ItemTrout",
+							"ItemSodaRbull","sardines_epoch","scam_epoch","ItemSeaBass","FoodSnooter","sweetcorn_epoch","FoodWalkNSons","WhiskeyNoodle",
+							"FoodMeeps"
+							])then{
+								_index = _ctrl tvAdd [[1,3],_x select 4];
+								_path = [1,3,_index];
+							}else{
+								_index = _ctrl tvAdd [[1,4],_x select 4];
+								_path = [1,4,_index];
+							};
 						};
 					};
 				};
@@ -943,8 +975,8 @@ HS_confirmtrade = {
 					clearItemCargoGlobal _WH;
 					deleteVehicle _WH;
 				};
+				_error = [];
 				{
-				
 					_itemWorth = _x select 1;
 					_itemTax = _x select 2;
 					_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
@@ -952,20 +984,29 @@ HS_confirmtrade = {
 					_pay = _pay + _cost;
 					switch(_x select 3)do{
 						case "cfgweapons":{
-							_WH addWeaponCargo [_x select 0,1];
+							_kindOf = [(configFile >> "CfgWeapons" >> (_x select 0)),true] call BIS_fnc_returnParents;
+							if ("ItemCore" in _kindOf)then{
+								_WH addItemCargo [_x select 0,1];
+							}else{
+								_WH addWeaponCargo [_x select 0,1];
+							};
 						};
 						case "cfgmagazines":{
 							_WH addMagazineCargo [_x select 0,1];
 						};
 						case "cfgvehicles":{
-							_WH addBackpackCargoGlobal [_x select 0,1];
+							_WH addBackpackCargo [_x select 0,1];
 						};
 						default {
-							_WH addItemCargo [_x select 0,1];
+							_error pushBack (_x select 0);
 						};
 					};
 				}forEach _isNOTOK;
 				titleText [localize "STR_HS_ONGROUNDNEARYOU","PLAIN DOWN"];
+				if(count _error > 0)then{
+					systemChat str['TraderError:',_error];
+					diag_log str['TraderError:',_error];
+				};
 			};
 			HALV_takegive = [player,(_pay*-1)];
 			publicVariableServer "HALV_takegive";
@@ -974,7 +1015,7 @@ HS_confirmtrade = {
 			titleText [localize "STR_HS_NOTENOGHCRYPTO","PLAIN DOWN"];
 		};
 	};
-	player switchMove "AinvPknlMstpSlayWrflDnon_medic";
+	player playMove "AinvPknlMstpSlayWrflDnon_medic";
 	[]spawn{
 		sleep 6.2;
 		player switchMove "";
