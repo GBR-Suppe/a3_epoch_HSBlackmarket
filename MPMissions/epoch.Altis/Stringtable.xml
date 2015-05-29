@@ -520,7 +520,7 @@
 				<Original>Select 1/2 Price Rent-a-car or Buy Full Price Vehicle:</Original>
 				<English>Select 1/2 Price Rent-a-car or Buy Full Price Vehicle:</English>
 				<French>Sélectionnez Moitié prix temporaire ou Full Prix Véhicule:</French>
-				<German>Halber Preis,Fahrzeug speichert nicht oder voller Preis,Fahrzeug speichert:</German>
+				<German>1/2 Preis,Fahrzeug speichert nicht oder voller Preis,Fahrzeug speichert:</German>
 				<Spanish>Seleccione mitad de precio temporal o completa Precio Vehículo Guardados:</Spanish>
 			</Key>
 			<Key ID="STR_HS_BUYFULLPRICE">
@@ -533,10 +533,12 @@
 			<Key ID="STR_HS_BUYHALFPRICE">
 				<Original>Rent 1/2 Price Temp Vehicle</Original>
 				<English>Rent 1/2 Price Temp Vehicle</English>
+				<German>Miete ein 1/2 Preis Temp Fahrzeug</German>
 			</Key>
 			<Key ID="STR_HS_PRESSTOBUYHALFPRICE">
 				<Original>Press to Rent 1/2 Price Vehicle Until next restart</Original>
 				<English>Press to Rent 1/2 Price Vehicle Until next restart</English>
+				<German>Drücke um ein 1/2 Fahrzeug zu Mieten(nur bis zum restart)</German>
 			</Key>
 			<Key ID="STR_HS_BUYCHECK">
 				<Original>Check Availability</Original>
@@ -557,180 +559,215 @@
 			<Key ID="STR_HS_ASSAULTRIFLES">
 				<Original>Assault Rifles</Original>
 				<English>Assault Rifles</English>
+				<German>Sturmgewehre</German>
 				<Russian>Автоматические винтовки</Russian>
 			</Key>
 			<Key ID="STR_HS_HANDGUNS">
 				<Original>Hand Guns</Original>
 				<English>Hand Guns</English>
+				<German>Pistolen</German>
 				<Russian>Пистолет/Ручное</Russian>
 			</Key>
 			<Key ID="STR_HS_MACHINEGUNS">
 				<Original>Machine Guns</Original>
 				<English>Machine Guns</English>
+				<German>Maschinengewehre</German>
 				<Russian>Пулемёт</Russian>
 			</Key>
 			<Key ID="STR_HS_SNIPERRIFLES">
 				<Original>Sniper Rifles</Original>
 				<English>Sniper Rifles</English>
+				<German>Scharfschützengewehre</German>
 				<Russian>Снайперские винтовки</Russian>
 			</Key>
 			<Key ID="STR_HS_SUBMACHINEGUNS">
 				<Original>Submachine Guns</Original>
 				<English>Submachine Guns</English>
+				<German>Submachine Guns</German>
 				<Russian>Пистолет-пулеметы</Russian>
 			</Key>
 			<Key ID="STR_HS_LAUNCHERS">
 				<Original>Launchers</Original>
 				<English>Launchers</English>
+				<German>Raketenwerfer</German>
 			</Key>
 			<Key ID="STR_HS_OTHER">
 				<Original>Other</Original>
 				<English>Other</English>
+				<German>Anderes</German>
 				<Russian>Всякое</Russian>
 			</Key>
 			<Key ID="STR_HS_AMMOBULLETS">
 				<Original>Ammo / Bullets</Original>
 				<English>Ammo / Bullets</English>
+				<German>Munition</German>
 				<Russian>Боезапас / Патроны</Russian>
 			</Key>
 			<Key ID="STR_HS_AMMOROCKETS">
 				<Original>Rockets / Missiles</Original>
 				<English>Rockets / Missiles</English>
+				<German>Raketen</German>
 			</Key>
 			<Key ID="STR_HS_BUILDINGSUPP">
 				<Original>Building Supplies</Original>
 				<English>Building Supplies</English>
+				<German>Bau Material</German>
 				<Russian>Стройматериалы</Russian>
 			</Key>
 			<Key ID="STR_HS_FOOD">
 				<Original>Food</Original>
 				<English>Food</English>
+				<German>Essen</German>
 			</Key>
 			<Key ID="STR_HS_BIPODS">
 				<Original>Bipods</Original>
 				<English>Bipods</English>
+				<German>Bipods</German>
 				<Russian>Сошки</Russian>
 			</Key>
 			<Key ID="STR_HS_MUZZLES">
 				<Original>Muzzles</Original>
 				<English>Muzzles</English>
+				<German>Aufsätze</German>
 				<Russian>Глушители</Russian>
 			</Key>
 			<Key ID="STR_HS_OPTICS">
 				<Original>Optics</Original>
 				<English>Optics</English>
+				<German>Visiere</German>
 				<Russian>Оптика</Russian>
 			</Key>
 			<Key ID="STR_HS_POINTERS">
 				<Original>Pointers</Original>
 				<English>Pointers</English>
+				<German>Laserdesignator</German>
 				<Russian>Целеуказатели</Russian>
 			</Key>
 			<Key ID="STR_HS_SMOKES">
 				<Original>Smoke Grenades</Original>
 				<English>Smoke Grenades</English>
+				<German>Rauch Granaten</German>
 				<Russian>Дымовые гранаты</Russian>
 			</Key>
 			<Key ID="STR_HS_FLARES">
 				<Original>Flares</Original>
 				<English>Flares</English>
+				<German>Flares</German>
 				<Russian>Сигнальные ракеты</Russian>
 			</Key>
 			<Key ID="STR_HS_GRENADES">
 				<Original>Grenades</Original>
 				<English>Grenades</English>
+				<German>Granaten</German>
 				<Russian>Гранаты</Russian>
 			</Key>
 			<Key ID="STR_HS_MINES">
 				<Original>Mines</Original>
 				<English>Mines</English>
+				<German>Minen</German>
 				<Russian>Мины</Russian>
 			</Key>
 			<Key ID="STR_HS_PLANES">
 				<Original>Planes</Original>
 				<English>Planes</English>
+				<German>Flugzeuge</German>
 				<Russian>Самолёты</Russian>
 			</Key>
 			<Key ID="STR_HS_HELICOPTERS">
 				<Original>Helicopters</Original>
 				<English>Helicopters</English>
+				<German>Helicopter</German>
 				<Russian>Вертолёты</Russian>
 			</Key>
 			<Key ID="STR_HS_CARS">
 				<Original>Cars</Original>
 				<English>Cars</English>
+				<German>Autos</German>
 				<Russian>Авто</Russian>
 			</Key>
 			<Key ID="STR_HS_GOKARTS">
 				<Original>GoKarts</Original>
 				<English>GoKarts</English>
+				<German>GoKarts</German>
 				<Russian>Карт</Russian>
 			</Key>
 			<Key ID="STR_HS_TRUCKS">
 				<Original>Trucks</Original>
 				<English>Trucks</English>
+				<German>Trucks</German>
 				<Russian>Грузовики</Russian>
 			</Key>
 			<Key ID="STR_HS_APCS">
 				<Original>APC's</Original>
 				<English>APC's</English>
+				<German>APC's</German>
 				<Russian>Бронированные</Russian>
 			</Key>
 			<Key ID="STR_HS_TANKS">
 				<Original>Tanks / Tracked</Original>
 				<English>Tanks / Tracked</English>
+				<German>Panzer</German>
 				<Russian>Танки / Гусеничное</Russian>
 			</Key>
 			<Key ID="STR_HS_AIR">
 				<Original>Air</Original>
 				<English>Air</English>
+				<German>Luft</German>
 				<Russian>Воздух</Russian>
 			</Key>
 			<Key ID="STR_HS_LAND">
 				<Original>Land</Original>
 				<English>Land</English>
+				<German>Land</German>
 				<Russian>Земля</Russian>
 			</Key>
 			<Key ID="STR_HS_SEA">
 				<Original>Sea</Original>
 				<English>Sea</English>
+				<German>Wasser</German>
 				<Russian>Вода</Russian>
 			</Key>
 			<Key ID="STR_HS_WEAPONS">
 				<Original>Weapons</Original>
 				<English>Weapons</English>
+				<German>Waffen</German>
 				<Russian>Оружие</Russian>
 			</Key>
 			<Key ID="STR_HS_MAGAZINEITEMS">
 				<Original>Magazine Items</Original>
 				<English>Magazine Items</English>
+				<German>Magazine</German>
 				<Russian>Предметы инвентаря</Russian>
 			</Key>
 			<Key ID="STR_HS_ATTACHMENTSTOOLS">
 				<Original>Attachments and Tool Items</Original>
 				<English>Attachments and Tool Items</English>
+				<German>Aufsätze und Werkzeuge</German>
 				<Russian>Навесное и инструменты</Russian>
 			</Key>
 			<Key ID="STR_HS_EQUIPCLOTHING">
 				<Original>Equipment / Clothing</Original>
 				<English>Equipment / Clothing</English>
+				<German>Equipment / Klamotten</German>
 				<Russian>Обмундирование / Одежда</Russian>
 			</Key>
 			<Key ID="STR_HS_EXPLOSMOKEFLARE">
 				<Original>Explosives, Smoke and Flare</Original>
 				<English>Explosives, Smoke and Flare</English>
+				<German>Sprengstoff, Smoke und Flares</German>
 				<Russian>Взрывчатка, дым и сигнал</Russian>
 			</Key>
 			<Key ID="STR_HS_VEHICLES">
 				<Original>Vehicles</Original>
 				<English>Vehicles</English>
+				<German>Fahrzeuge</German>
 				<Russian>Техника</Russian>
 			</Key>
 			<Key ID="STR_HS_DOUBLECLICKTOADD">
 				<Original>Double click an item to add it to the buy / sell list, switch between buy and sell mode by pressing the Buy / Sell Mode button</Original>
 				<English>Double click an item to add it to the buy / sell list, switch between buy and sell mode by pressing the Buy / Sell Mode button</English>
 				<French>Double-cliquez sur un objet pour l'ajouter dans la liste, changer entre l'achat / vente en appuyant sur le bouton d'achat</French>
-				<German>Doppelklick auf einen Gegenstand um diesen in der Liste zuzufügen, wechsel zwischen Kauf / Verkauf indem du den Kauf Knopf drückst</German>
+				<German>Doppelklick auf einen Gegenstand um diesen in der Liste zuzufügen, wechsel zwischen Kauf/Verkauf indem du den Kauf Knopf drückst</German>
 				<Russian>Дважды кликните по предмету для добавления его в список покупки/продажи. Переключиться между покупкой и продажой можно нажатием кнопки Покупка/Продажа</Russian>
 				<Spanish>Haga doble clic en un objeto para agregarlo en la lista, cambiar entre la compra / venta al presionar el botón de compra</Spanish>
 			</Key>
