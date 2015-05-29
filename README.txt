@@ -25,6 +25,7 @@ Install:
 - Add to your init:
   [] execVM "trader\init.sqf";
   [] execVM "trader\HALV_takegive_crypto_init.sqf";
+  [] execVM "resetvehicleammo.sqf";
   
 - Add to your description.ext
   #include "trader\tradedialog.hpp"
