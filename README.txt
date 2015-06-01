@@ -6,7 +6,7 @@
 The HS Blackmarket is a 'new' Trader-system for A3 Epoch, it was created in collaboration with Halv, he wrote 90% of the scripts, Halv is the true genius.
 
 Features:
-- Trader with Costum Dialog (Menu)
+- Trader with Custom Dialog (Menu)
 - Trader with unlimited supply
 - Trader will spawn random over the Map
 - Trader will spawn in 5 different "Camps"
