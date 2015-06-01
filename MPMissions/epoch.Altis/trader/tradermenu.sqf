@@ -188,8 +188,8 @@ HS_trader_menu = {
 					_index1 = _ctrl tvAdd [[_mainindex],_id select 0];
 					_ctrl tvSetPicture [[_mainindex,_index1],_id select 1];
 					_ctrl tvsetValue [[_mainindex,_index1],-1];
-					switch(_id select 0)do{
-						case "Air":{
+					switch(_index1)do{
+						case 0:{
 							{
 								_index2 = _ctrl tvAdd [[_mainindex,_index1],_x select 0];
 								_ctrl tvSetPicture [[_mainindex,_index1,_index2],_x select 1];
@@ -201,7 +201,7 @@ HS_trader_menu = {
 							[localize "STR_HS_OTHER","\a3\Ui_f\data\gui\Rsc\RscDisplayGarage\texturesources_ca.paa"]
 							];
 						};
-						case "Land":{
+						case 1:{
 							{
 								_index2 = _ctrl tvAdd [[_mainindex,_index1],_x select 0];
 								_ctrl tvSetPicture [[_mainindex,_index1,_index2],_x select 1];
@@ -951,7 +951,6 @@ HS_confirmtrade = {
 						};
 					};
 				};
-			
 				if(_isOK)then{
 					_itemWorth = ((HS_trader_itemlist select _x) select 1);
 					_itemTax = ((HS_trader_itemlist select _x) select 2);
@@ -963,17 +962,19 @@ HS_confirmtrade = {
 			}forEach HS_BUYSELLARRAY;
 			if(count _isNOTOK > 0)then{
 				_pos = getPos player;
-				_pos = [_pos select 0,_pos select 1,0];
+				_pos set [2,0];
 				_WH = createVehicle["groundWeaponHolder",_pos,[],0,"CAN_COLLIDE"];
-				_WH setPos _pos;
-				[_WH]spawn{
+				_cluttercutter = createVehicle ["Land_ClutterCutter_medium_F", _pos, [], 0, "CAN_COLLIDE"];
+				[_WH,_cluttercutter]spawn{
 					_WH = _this select 0;
+					_WH2 = _this select 1;
 					waitUntil{sleep 1;(_WH distance player > 100 || isNull player || !alive player)};
 					clearWeaponCargoGlobal _WH;
 					clearMagazineCargoGlobal _WH;
 					clearBackpackCargoGlobal  _WH;
 					clearItemCargoGlobal _WH;
 					deleteVehicle _WH;
+					deleteVehicle _WH2;
 				};
 				_error = [];
 				{
