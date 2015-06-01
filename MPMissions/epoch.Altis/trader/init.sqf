@@ -15,8 +15,8 @@ _dist2roadMax = 350;
 _tradercount = round(random 4)+6;
 //min distance from other traders in meters, dont go to higher than _spawnarea/(_tradercount+1) or script will just revert back to this amount to avoid problems 
 _mindist = 4000;
-//marker text for traders
-_markertext = "HS Blackmarket";
+//marker text for traders. "" for no name(only the dot)
+_markertext = "HS Blackmarket";  
 //texture on the flag (has to be 200x200), "" to disable
 _flagtexture = "trader\dkflagpole.jpg";
 //texture on the sign, "" to disable
