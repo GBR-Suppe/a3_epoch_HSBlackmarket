@@ -26,7 +26,7 @@ HS_fnc_returnnameandpic = {
 	_return
 };
 
-_config = "CfgPricing" call EPOCH_returnConfig;
+_config = "HSPricing" call EPOCH_returnConfig;
 HS_trader_itemlist = [];
 for "_i" from 0 to (count _config)-1 do {
 	_type = _config select _i;
@@ -57,7 +57,7 @@ HS_trader_menu = {
 			};
 		}forEach (nearestObjects [player,["Air","Landvehicle","Ship"],60]);
 		HS_PLAYER_itemlist = [];
-		_config = "CfgPricing" call EPOCH_returnConfig;
+		_config = "HSPricing" call EPOCH_returnConfig;
 		_list = [];
 		{
 			if(_x != "")then{
