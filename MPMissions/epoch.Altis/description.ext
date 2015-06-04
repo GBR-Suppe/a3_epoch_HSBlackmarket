@@ -1,5 +1,5 @@
 #include "trader\tradedialog.hpp"
-#include "trader\CfgPricing.hpp"
+#include "trader\HSPricing.hpp"
 
 author = "Epoch Mod Team";
 class Header

@@ -10,8 +10,8 @@ Features:
 - Trader with unlimited supply
 - Trader will spawn random over the Map
 - Trader will spawn in 5 different "Camps"
-- Easily edit/add Prices, Items, Vehicles, Weapons
-- Easily Blacklist Items, Vehicles, Weapons
+- Easily edit/add Prices,Items,Vehicles,Weapons
+- Easily Blacklist Items,Vehicles,Weapons
 - Easily control about Vehicleammo
 - Vehicleammo count over restart (10 bullets left for the restart = 10 bullets left after restart)
 - Static and Random Traders
@@ -29,11 +29,11 @@ Install:
   
 - Add to your description.ext
   #include "trader\tradedialog.hpp"
-  #include "trader\CfgPricing.hpp"
+  #include "trader\HSPricing.hpp"
   
 - (optional) Open epoch.Mission/trader/init.sqf to configurate the HS Blackmarket
 
-- (optional) Open epoch.Mission/trader/CfgPricing.hpp to configurate prices, or to add Items, Vehicles, Weapons and so on
+- (optional) Open epoch.Mission/trader/HSPricing.hpp to configurate prices, or to add Items,Vehicles,Weapons and so on
 
 - (optional) Open epoch.Mission/trader/settings.sqf and resetvehicleammo.sqf to configurate the Vehicleammo
 

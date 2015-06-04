@@ -1,4 +1,4 @@
-class CfgPricing
+class HSPricing
 {
 	class ChainSaw {price = 125;};
 	class CircuitParts {price = 50;};
