@@ -223,8 +223,8 @@ class HSPricing
 	class 100Rnd_65x39_caseless_mag {price = 3; tax = 0.9;};
 	class 200Rnd_65x39_cased_Box_Tracer {price = 5; tax = 0.9;};
 	class 100Rnd_65x39_caseless_mag_Tracer {price = 4; tax = 0.9;};
-	class 150Rnd_762x51_Box {price = 4; tax = 0.9;};
-	class 150Rnd_762x51_Box_Tracer {price = 5; tax = 0.9;};
+	class 150Rnd_762x54_Box {price = 4; tax = 0.9;};
+	class 150Rnd_762x54_Box_Tracer {price = 5; tax = 0.9;};
 	class 150Rnd_93x64_Mag{ price = 6; tax = 0.9; };
 
 	class Rangefinder {price = 4;};
