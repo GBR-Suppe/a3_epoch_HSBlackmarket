@@ -21,12 +21,12 @@ HS_fnc_returnnameandpic = {
 			_libtxt = (gettext (configFile >> _type >> _item >> "Library" >> "libTextDesc"));
 			_BIStype = _item call BIS_fnc_itemType;
 		};
-	}count ["cfgweapons","cfgmagazines","cfgvehicles","cfgglasses"];
+	}forEach ["cfgweapons","cfgmagazines","cfgvehicles","cfgglasses"];
 	_return = [_type,_txt,_libtxt,_pic,_BIStype select 0,_BIStype select 1];
 	_return
 };
 
-_config = "HSPricing" call EPOCH_returnConfig;
+_config = "CfgPricing" call EPOCH_returnConfig;
 HS_trader_itemlist = [];
 for "_i" from 0 to (count _config)-1 do {
 	_type = _config select _i;
@@ -57,7 +57,7 @@ HS_trader_menu = {
 			};
 		}forEach (nearestObjects [player,["Air","Landvehicle","Ship"],60]);
 		HS_PLAYER_itemlist = [];
-		_config = "HSPricing" call EPOCH_returnConfig;
+		_config = "CfgPricing" call EPOCH_returnConfig;
 		_list = [];
 		{
 			if(_x != "")then{
@@ -89,7 +89,7 @@ HS_trader_menu = {
 					case ((damage _obj) > 0.25):{1.5};
 					default {1};
 				};
-				_price = (_price / _damagepricereduction);
+				_price = round(_price/_damagepricereduction);
 				HS_PLAYER_itemlist pushBack [_x,_price,getNumber(_config >> _x >> "tax"),_info select 0,_info select 1,_info select 2,_info select 3,_info select 4,_info select 5,_obj]
 			};
 		}forEach _HS_nearvehiclestypes;
@@ -1038,17 +1038,10 @@ HS_confirmtrade = {
 };
 //needs a check to only allow every 5-30sec
 HS_checkavailability = {
-	if(!isNil "HSHASPRESSEDONCE")exitWith{
-		systemChat format[localize "STR_HS_NOTALLOWEDTOSPAM",((round((diag_tickTime - HSHASPRESSEDONCE)-15))*-1)];
+	if(EPOCH_VehicleSlotCount <= 0)exitWith{
+		titleText ["Can't buy a saved vehicle, too many on the map!","PLAIN DOWN"];
 	};
-					//[item(s),player,isselling]
-	HSPV_traderrequest = [[],player,0];
-	publicVariableServer "HSPV_traderrequest";
-	[]spawn{
-		HSHASPRESSEDONCE = diag_tickTime;
-		waitUntil{sleep 1;(diag_tickTime - HSHASPRESSEDONCE > 15)};
-		HSHASPRESSEDONCE = nil;
-	};
+	titleText ["Vehicle slots available, you can buy one that saves!","PLAIN DOWN"];
 };
 
 HS_buyvehiclesaved = {
