@@ -12,14 +12,6 @@ _type = _this select 2;
 _message = "";
 
 switch(_type)do{
-	case 0:{
-		if(count EPOCH_VehicleSlots <=EPOCH_storedVehicleCount)exitWith{
-			_message = "Can't buy a vehicle, too many on the map!";
-			diag_log format["[HSBlackmarket] %1 | %2",_player,_message];
-		};
-		_message = "Vehicle slots available, you can buy one that saves!";
-		diag_log format["[HSBlackmarket] %1 | %2",_player,_message];
-	};
 	case 1:{
 		//[classname,price,tax,config,txt,libtxt,pic,bis1,bis2(,vehicle)]
 		_return = 0;
@@ -41,7 +33,7 @@ switch(_type)do{
 				};
 				_vehSlot=_obj getVariable["VEHICLE_SLOT","ABORT"];
 				_isrental = _obj getVariable ["HSHALFPRICE",0];
-				if(_vehSlot !="ABORT" && _isrental != 1)then{
+				if(_vehSlot !="ABORT" && !(_isrental in [1,2]))then{
 					_message = _message + format["%1 is OK to sell, dam: %2 pricemod: %3 || ",_x select 4,damage _obj,_damagepricereduction];
 					removeFromRemainsCollector[_obj];
 					deleteVehicle _obj;
@@ -54,7 +46,7 @@ switch(_type)do{
 					_cost = ((_x select 1)/_damagepricereduction);
 					_return = _return + _cost;
 				}else{
-					if(_isrental == 1)then{
+					if(_isrental > 0)then{
 						_message = _message + format[" || %1 'Rental' is OK to sell, dam: %2 pricemod: %3",_x select 4,damage _obj,_damagepricereduction];
 						removeFromRemainsCollector[_obj];
 						_obj setVariable["VEHICLE_SLOT","ABORT",true];
@@ -78,16 +70,19 @@ switch(_type)do{
 		diag_log format["[HSBlackmarket] %1 selling %2",_player,_arr];
 	};
 	case 2:{
-		if(count EPOCH_VehicleSlots <=EPOCH_storedVehicleCount)exitWith{
+		if(EPOCH_VehicleSlotCount <= 0)exitWith{
 			_message = format["Could not buy a %1, too many vehicles on the map!",_arr select 4];
 		};
 		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"],100];
+		_nospace = false;
 		if(count _spot < 1)then{
 			_canbewwater = if((_arr select 0) isKindOf "Ship")then{1}else{0};
-			_spot = [getPos _player,5,75,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
+			_spot = [getPos _player,5,125,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
+			if(_spot distance _player > 125)exitWith{_nospace = true;};
 		}else{
 			_spot = getPosATL (_spot select 0);
 		};
+		if(_nospace)exitWith{_message = format["Could not buy a %1, not enough space nearby!",_arr select 4];};
 		_slot=EPOCH_VehicleSlots select 0;
 		EPOCH_VehicleSlots = EPOCH_VehicleSlots - [_slot];
 		EPOCH_VehicleSlotCount = count EPOCH_VehicleSlots;
@@ -141,12 +136,15 @@ switch(_type)do{
 	};
 	case 3:{
 		_spot = nearestObjects [_player, ["Land_HelipadCivil_F","Land_HelipadCircle_F","Land_HelipadEmpty_F","Land_HelipadSquare_F","Land_JumpTarget_F"],100];
+		_nospace = false;
 		if(count _spot < 1)then{
 			_canbewwater = if((_arr select 0) isKindOf "Ship")then{1}else{0};
-			_spot = [getPos _player,5,75,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
+			_spot = [getPos _player,5,125,0,_canbewwater,2000,0] call BIS_fnc_findSafePos;
+			if(_spot distance _player > 125)exitWith{_nospace = true;};
 		}else{
 			_spot = getPosATL (_spot select 0);
 		};
+		if(_nospace)exitWith{_message = format["Could not buy a %1, not enough space nearby!",_arr select 4];};
 		_veh = createVehicle[(_arr select 0),_spot,[],0,"NONE"];
 		_veh call EPOCH_server_setVToken;
 		addToRemainsCollector[_veh];
