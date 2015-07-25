@@ -1,6 +1,7 @@
+#include "trader\Halv_defines.hpp"
 #include "trader\tradedialog.hpp"
 #include "trader\HSPricing.hpp"
-#include "trader\Halv_defines.hpp"
+
 
 
 author = "Epoch Mod Team";

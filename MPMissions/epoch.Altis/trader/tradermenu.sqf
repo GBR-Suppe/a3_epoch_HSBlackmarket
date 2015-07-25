@@ -663,7 +663,7 @@ HS_confirmtrade = {
 						_isOK = true;
 					};
 					case ((_x select 0) in assignedItems player):{
-						if((_x select 0) in ["Binocular","Rangefinder"])then{
+						if((_x select 0) in ["Binocular","Rangefinder","Laserdesignator","Laserdesignator_02","Laserdesignator_03"])then{
 							player removeWeapon (_x select 0);
 							_isOK = true;
 						}else{
