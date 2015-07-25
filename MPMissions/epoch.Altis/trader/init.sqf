@@ -3,22 +3,13 @@
 	init.sqf
 	by Halv & Suppe
 	
-	Copyright (C) 2015  Halvhjearne & Suppe
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	Contact : halvhjearne@gmail.com
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 private ["_staticCoords","_blacklistedAreas","_spawnarea"];
 
 _agent = "I_G_resistanceLeader_F";
+
+_addsafezone = true;
 
 _spawnnearroad = true;
 
@@ -28,8 +19,8 @@ _dist2roadMax = 350;
 _tradercount = round(random 4)+6;
 //min distance from other traders in meters, dont go to higher than _spawnarea/(_tradercount+1) or script will just revert back to this amount to avoid problems 
 _mindist = 4000;
-//marker text for traders. "" for no name(only the dot)
-_markertext = "HS Blackmarket";  
+//marker text for traders
+_markertext = "HS Blackmarket";
 //texture on the flag (has to be 200x200), "" to disable
 _flagtexture = "trader\dkflagpole.jpg";
 //texture on the sign, "" to disable
@@ -90,12 +81,12 @@ switch(toLower worldName)do{
 
 // Server stuff...
 if(isServer) then{
-	diag_log "[HSBlackmarket] Server adding PVEvent";
-	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	diag_log "[HSBlackmarket] Server Loading functions";
 	HS_playertraderequest = compileFinal preprocessFileLineNumbers "trader\HS_playertraderequest.sqf";
 	HS_weaponsrestriction = compileFinal preprocessFileLineNumbers "trader\HS_weaponsrestriction.sqf";
 	HALV_PurgeObject = compileFinal preprocessFileLineNumbers "trader\HALV_PurgeObject.sqf";
+	diag_log "[HSBlackmarket] Server adding PVEvent";
+	"HSPV_traderrequest" addPublicVariableEventHandler {(_this select 1) call HS_playertraderequest};
 	private ["_coords","_roadlist","_firstroad","_statdir"];
 /////////////////////////////////////////////////////////////
 	/*
@@ -109,11 +100,7 @@ if(isServer) then{
 		private ["_array1", "_array2", "_result"];
 		_array1 = _this select 0;
 		_array2 = _this select 1;
-		_result =
-		[
-		(((_array1 select 0) select 0) * (_array2 select 0)) + (((_array1 select 0) select 1) * (_array2 select 1)),
-		(((_array1 select 1) select 0) * (_array2 select 0)) + (((_array1 select 1) select 1) * (_array2 select 1))
-		];
+		_result = [(((_array1 select 0) select 0) * (_array2 select 0)) + (((_array1 select 0) select 1) * (_array2 select 1)),(((_array1 select 1) select 0) * (_array2 select 0)) + (((_array1 select 1) select 1) * (_array2 select 1))];
 		_result
 	};
 /////////////////////////////////////////////////////////////
@@ -292,6 +279,7 @@ if(isServer) then{
 			]
 		]call BIS_fnc_selectRandom;
 		_extra = _objects deleteAt 0;
+		if(_addsafezone)then{_objects pushBack ["ProtectionZone_Invisible_F",[0,0,0],0];};
 		_randir = _randir + _extra;
 		//creating trader
 		_pos0 = [(_coords select 0),(_coords select 1),0];
@@ -330,7 +318,7 @@ if(isServer) then{
 		diag_log "[HSBlackmarket]: HSBlackmarket Creating a Marker";
 		_marker = createMarker [format["HSBlackmarket_%1",_i], _coords];
 		_marker setMarkerShape "ICON";
-		_marker setMarkerType "hd_dot";    // pickup
+		_marker setMarkerType "hd_pickup";
 		_marker setMarkerText _markertext;
 		_marker setMarkerColor "ColorWEST";
 		_units pushBack _unit;
@@ -388,7 +376,19 @@ if(isServer) then{
 if(hasInterface)then{
 	diag_log "[HSBlackmarket]: Client waiting for Trader ...";
 	waitUntil {sleep 1;(!isNil "HSPV_HSBlackmarket")};
-	{_x addAction ["<img size='1.5'image='\a3\Ui_f\data\gui\Rsc\RscDisplayArcadeMap\icon_layout_ca.paa'/> <t color='#0096ff'>HS Trader Menu</t>","trader\dummy.sqf",_x, -9, true, true, "", "_this distance _target < 5"];}forEach HSPV_HSBlackmarket;
+	{
+		_x addAction ["<img size='1.5'image='\a3\Ui_f\data\gui\Rsc\RscDisplayArcadeMap\icon_layout_ca.paa'/> <t color='#0096ff'>HS Trader Menu</t>",
+		{
+			/*
+			systemChat "WARNING:";
+			systemChat "This trader is NOT finished yet ...";
+			systemChat "... you might loose items and / or crypto trading here!";
+			*/
+			HS_SWITCH = false;
+			createDialog "HS_trader_dialog";
+			call HS_trader_menu;
+		},_x, -9, true, true, "", "player distance _target < 5"];
+	}forEach HSPV_HSBlackmarket;
 	HSPV_HSBlackmarket = nil;
 	call compile preprocessFileLineNumbers "trader\tradermenu.sqf";
 	diag_log "[HSBlackmarket]: Client Done ...";

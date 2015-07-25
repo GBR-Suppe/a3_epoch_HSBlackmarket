@@ -3,18 +3,7 @@
 	tradermenu.sqf
 	by Halv & Suppe
 	
-	Copyright (C) 2015  Halvhjearne & Suppe
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	Contact : halvhjearne@gmail.com
+	Copyright (C) 2015  Halvhjearne & Suppe > README.md
 */
 
 #include "settings.sqf";
@@ -45,6 +34,7 @@ for "_i" from 0 to (count _config)-1 do {
 	_type = _config select _i;
 	if (isClass _type) then {
 		_item = configName(_type);
+//		diag_log str["DEBUG:",_item];
 		if !(_item in _blacklist)then{
 			_price = getNumber(_config >> _item >> "price");
 			_tax = getNumber(_config >> _item >> "tax");
@@ -64,7 +54,7 @@ HS_trader_menu = {
 		_HS_nearvehiclestypes = [];
 		_HS_nearvehicles = [];
 		{
-			if((owner _x) == (owner player))then{
+			if((owner _x) isEqualTo (owner player))then{
 				_HS_nearvehiclestypes pushBack (typeOf _x);
 				_HS_nearvehicles pushBack _x;
 			};
@@ -73,7 +63,7 @@ HS_trader_menu = {
 		_config = "HSPricing" call EPOCH_returnConfig;
 		_list = [];
 		{
-			if(_x != "")then{
+			if (_x != "")then{
 				_list pushBack _x;
 			};
 		}forEach (assignedItems player)+(primaryWeaponItems player)+(handgunItems player)+(secondaryWeaponItems player)+(uniformItems player)+(vestItems player)+(backpackItems player)+[primaryWeapon player,handgunWeapon player,secondaryWeapon player,uniform player,vest player,backpack player,headgear player,goggles player];
@@ -90,7 +80,7 @@ HS_trader_menu = {
 				_info = _x call HS_fnc_returnnameandpic;
 		//damage price reductions, the price is divded by this number
 				_obj = _HS_nearvehicles select _forEachIndex;
-				if(_obj getVariable ["HSHALFPRICE",0] == 1)then{_price = _price/2;};
+				if((_obj getVariable ["HSHALFPRICE",0]) isEqualTo 1)then{_price = _price/2;};
 				_damagepricereduction = switch(true)do{
 							//damaged over 90%
 					case ((damage _obj) > 0.9):{10};
@@ -254,19 +244,31 @@ HS_trader_menu = {
 //				diag_log format["%1",_x];
 				switch(_x select 8)do{
 					case "AssaultRifle":{
-						if((_x select 0) in ["ChainSaw","m107_EPOCH","m107Tan_EPOCH","m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"])then{
+						if((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F","CUP_arifle_RPK74","CUP_arifle_MG36","CUP_arifle_MG36_camo","CUP_arifle_L86A2","CUP_glaunch_Mk13","CUP_glaunch_M79","CUP_glaunch_M32","CUP_sgun_M1014","CUP_sgun_Saiga12K","CUP_sgun_AA12","CUP_smg_MP5SD6","CUP_smg_MP5A5","CUP_smg_EVO","CUP_smg_bizon","m107_EPOCH","m107Tan_EPOCH","CUP_srifle_CZ550","CUP_srifle_CZ750","CUP_srifle_SVD_wdl_ghillie","CUP_srifle_SVD_des_ghillie_pso","CUP_srifle_ksvk","CUP_srifle_SVD","CUP_srifle_SVD_des","CUP_srifle_AWM_des","CUP_srifle_AWM_wdl","CUP_srifle_M110","CUP_srifle_DMR","CUP_srifle_M24_des","CUP_srifle_M24_wdl","CUP_srifle_M24_ghillie","CUP_srifle_M40A3","CUP_arifle_Mk20","CUP_srifle_VSSVintorez","hgun_PDW2000_F","ChainSaw","speargun_epoch","MMG_01_hex_F"])then{
 							switch (true)do{
-								case ((_x select 0) == "ChainSaw"):{
-									_index = _ctrl tvAdd [[0,6],_x select 4];
-									_path = [0,6,_index];
+								case ((_x select 0) == "hgun_PDW2000_F"):{
+									_index = _ctrl tvAdd [[0,1],_x select 4];
+									_path = [0,1,_index];
 								};
-								case ((_x select 0) in ["m107_EPOCH","m107Tan_EPOCH"]):{
+								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F","MMG_01_hex_F","CUP_arifle_RPK74","CUP_arifle_MG36","CUP_arifle_MG36_camo","CUP_arifle_L86A2"]):{
+									_index = _ctrl tvAdd [[0,2],_x select 4];
+									_path = [0,2,_index];
+								};
+								case ((_x select 0) in ["m107_EPOCH","m107Tan_EPOCH","CUP_srifle_CZ550","CUP_srifle_CZ750","CUP_srifle_SVD_wdl_ghillie","CUP_srifle_SVD_des_ghillie_pso","CUP_srifle_ksvk","CUP_srifle_SVD","CUP_srifle_SVD_des","CUP_srifle_AWM_des","CUP_srifle_AWM_wdl","CUP_srifle_M110","CUP_srifle_DMR","CUP_srifle_M24_des","CUP_srifle_M24_wdl","CUP_srifle_M24_ghillie","CUP_srifle_M40A3","CUP_arifle_Mk20","CUP_srifle_VSSVintorez"]):{
 									_index = _ctrl tvAdd [[0,3],_x select 4];
 									_path = [0,3,_index];
 								};
-								case ((_x select 0) in ["m249_EPOCH","m249Tan_EPOCH","MMG_02_camo_F","MMG_02_black_F","MMG_02_sand_F","MMG_01_tan_F"]):{
-									_index = _ctrl tvAdd [[0,2],_x select 4];
-									_path = [0,2,_index];
+								case ((_x select 0) in ["CUP_smg_MP5SD6","CUP_smg_MP5A5","CUP_smg_EVO","CUP_smg_bizon"]):{
+									_index = _ctrl tvAdd [[0,4],_x select 4];
+									_path = [0,4,_index];
+								};
+								case ((_x select 0) in ["CUP_glaunch_Mk13","CUP_glaunch_M79","CUP_glaunch_M32"]):{
+									_index = _ctrl tvAdd [[0,5],_x select 4];
+									_path = [0,5,_index];
+								};
+								case ((_x select 0) in ["CUP_sgun_M1014","CUP_sgun_Saiga12K","CUP_sgun_AA12","speargun_epoch","ChainSaw"]):{
+									_index = _ctrl tvAdd [[0,6],_x select 4];
+									_path = [0,6,_index];
 								};
 							};
 						}else{
@@ -488,6 +490,10 @@ HS_trader_menu = {
 								_index = _ctrl tvAdd [[5,1,4],_x select 4];
 								_path = [5,1,4,_index];
 							};
+							case ((_x select 0) isKindOf "Pod_Heli_Transport_04_base_F"):{
+								_index = _ctrl tvAdd [[5,0,2],_x select 4];
+								_path = [5,0,2,_index];
+							};
 							default{
 								_index = _ctrl tvAdd [[5,1,5],_x select 4];
 								_path = [5,1,5,_index];
@@ -524,7 +530,7 @@ HS_additemtolb = {
 	_value = _ctrl tvValue _tree;
 	if(_value < 0)exitWith{};
 	if(HS_SWITCH)then{_ctrl tvDelete _tree;};
-	if(_tree select 0 == 5 && !HS_SWITCH)then{_ctrl tvDelete [5];};
+	if((_tree select 0) isEqualTo 5 && !HS_SWITCH)then{_ctrl tvDelete [5];};
 	_ctrl = (findDisplay 9999) displayCtrl 9998;
 	_currentarray = if(HS_SWITCH)then{HS_PLAYER_itemlist}else{HS_trader_itemlist};
 	_arr = _currentarray select _value;
@@ -577,7 +583,7 @@ HS_deleteitemfromlb = {
 	}forEach HS_BUYSELLARRAY;
 	_ctrl = (findDisplay 9999) displayCtrl 9996;
 	_ctrl ctrlSetText ""+(str _price)+" Crypto";
-	if(!HS_SWITCH && ((HS_trader_itemlist select _deleted)select 3 == "cfgvehicles") && ((HS_trader_itemlist select _deleted) select 8 != "Backpack")) then{call HS_trader_menu;};
+	if(!HS_SWITCH && ((HS_trader_itemlist select _deleted)select 3 == "cfgvehicles" && (HS_trader_itemlist select _deleted)select 8 != "Backpack"))then{call HS_trader_menu;};
 //	systemChat str(HS_BUYSELLARRAY);
 };
 
@@ -586,24 +592,37 @@ Halv_onlbtreeselected = {
 	private "_value";
 	_ctrl = _this select 0;
 	_current = _this select 1;
-	_value = if(typeName _current == "ARRAY")then{_ctrl tvValue _current}else{_ctrl lbValue _current};
-	_exit = if(typeName _current == "ARRAY")then{if(count _current < 2)then{true}else{false};}else{false};
+	_value = if((typeName _current) == "ARRAY")then{_ctrl tvValue _current}else{_ctrl lbValue _current};
+	_exit = if((typeName _current) == "ARRAY")then{if(count _current < 2)then{true}else{false};}else{false};
 	if(_exit)exitWith{};
 	if(_value < 0)exitWith{};
 	_currentarray = if(HS_SWITCH)then{HS_PLAYER_itemlist}else{HS_trader_itemlist};
 	_arr = _currentarray select _value;
 	_pic = _arr select 6;
-	_send = if((toLower _pic) in ["","pictureheal","picturepapercar","picturething","picturestaticobject"]) then {
-		parseText format["<t align='center'size='0.5'>%1</t><br/><t align='center'size='0.4'>%2</t>",_arr select 4,_arr select 5]; 
-	}else{
-		parseText format["<img size='2.4' image='%1'/><br/><t align='center'size='0.5'>%2</t><br/><t align='center'size='0.4'>%3</t>",_pic,_arr select 4,_arr select 5]; 
+	_ammotxt = "";
+	if((_arr select 3) == "cfgweapons")then{
+		_ammo = [] + getArray (configFile >> "cfgWeapons" >> (_arr select 0) >> "magazines");
+		if(count _ammo > 0)then{
+			{
+				_txt = (gettext (configFile >> "cfgmagazines" >> _x >> "displayName"));
+				_ammotxt = _ammotxt + format["<br/><t size='0.7'>%1</t>",_txt];
+			}forEach _ammo;
+		};
 	};
-	[_send,0,0 * safezoneH + safezoneY,15,0,0,8407] spawn bis_fnc_dynamicText;
+	_send = if((toLower _pic) in ["","pictureheal","picturepapercar","picturething","picturestaticobject"]) then {
+		format["<t align='center'size='0.5'>%1</t><br/><t align='center'size='0.4'>%2</t>",_arr select 4,_arr select 5]; 
+	}else{
+		format["<img size='2.4' image='%1'/><br/><t align='center'size='0.5'>%2</t><br/><t align='center'size='0.4'>%3</t>",_pic,_arr select 4,_arr select 5]; 
+	};
+	if (_ammotxt != "")then{
+		_send = _send + _ammotxt;
+	};
+	[parseText _send,0,0 * safezoneH + safezoneY,15,0,0,8407] spawn bis_fnc_dynamicText;
 };
 
 HS_buyorsell = {
 	disableSerialization;
-	if(_this select 2 == 0)then{HS_SWITCH = false;}else{HS_SWITCH = true;};
+	if((_this select 2) isEqualTo 0)then{HS_SWITCH = false;}else{HS_SWITCH = true;};
 	_ctrl = (findDisplay 9999) displayCtrl 9996;
 	_ctrl ctrlSetText "0 Crypto";
 	_lb = (findDisplay 9999) displayCtrl 9998;
@@ -612,6 +631,11 @@ HS_buyorsell = {
 
 HS_confirmtrade = {
 	#include "settings.sqf";
+	if !(isNil "HS_istrading")exitWith{
+		titleText ["Already trading ...","PLAIN DOWN"];
+	};
+	HS_istrading = true;
+	closeDialog 0;
 	_spawnveh = -1;
 	if (HS_SWITCH)then{
 		_list = [];
@@ -626,19 +650,19 @@ HS_confirmtrade = {
 				_vehicles pushBack _x;
 			}else{
 				switch(true)do{
-					case ((_x select 0) in (backpackItems player)):{
+					case ((_x select 0) in backpackItems player):{
 						player removeItemFromBackpack (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) in (vestItems player)):{
+					case ((_x select 0) in vestItems player):{
 						player removeItemFromVest (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) in (uniformItems player)):{
+					case ((_x select 0) in uniformItems player):{
 						player removeItemFromUniform (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) in (assignedItems player)):{
+					case ((_x select 0) in assignedItems player):{
 						if((_x select 0) in ["Binocular","Rangefinder"])then{
 							player removeWeapon (_x select 0);
 							_isOK = true;
@@ -647,23 +671,23 @@ HS_confirmtrade = {
 							_isOK = true;
 						};
 					};
-					case ((_x select 0) in (handgunItems player)):{
+					case ((_x select 0) in handgunItems player):{
 						player removehandgunItem (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) in (secondaryWeaponItems player)):{
+					case ((_x select 0) in secondaryWeaponItems player):{
 						player removeSecondaryWeaponItem (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) in (primaryWeaponItems player)):{
+					case ((_x select 0) in primaryWeaponItems player):{
 						player removePrimaryWeaponItem (_x select 0);
 						_isOK = true;
 					};
-					case (((_x select 0) == (primaryWeapon player)) || ((_x select 0) == (handgunWeapon player)) || ((_x select 0) == (secondaryWeapon player))):{
+					case ((_x select 0) == primaryWeapon player || (_x select 0) == handgunWeapon player || (_x select 0) == secondaryWeapon player):{
 						player removeWeapon (_x select 0);
 						_isOK = true;
 					};
-					case ((_x select 0) == (uniform player)):{
+					case ((_x select 0) == uniform player):{
 						if(count (uniformItems player) > 0)then{
 							systemChat localize "STR_HS_UNIFORMNOTSOLD";
 							_removeafter pushBack [0,_forEachIndex];
@@ -672,7 +696,7 @@ HS_confirmtrade = {
 							_isOK = true;
 						};
 					};
-					case ((_x select 0) == (vest player)):{
+					case ((_x select 0) == vest player):{
 						if(count (vestItems player) > 0)then{
 							systemChat localize "STR_HS_VESTNOTSOLD";
 							_removeafter pushBack [1,_forEachIndex];
@@ -681,7 +705,7 @@ HS_confirmtrade = {
 							_isOK = true;
 						};
 					};
-					case ((_x select 0) == (backpack player)):{
+					case ((_x select 0) == backpack player):{
 						if(count (backpackItems player) > 0)then{
 							systemChat localize "STR_HS_BACKPACKNOTSOLD";
 							_removeafter pushBack [2,_forEachIndex];
@@ -690,11 +714,11 @@ HS_confirmtrade = {
 							_isOK = true;
 						};
 					};
-					case ((_x select 0) == (headgear player)):{
+					case ((_x select 0) == headgear player):{
 						removeheadgear player;
 						_isOK = true;
 					};
-					case ((_x select 0) == (goggles player)):{
+					case ((_x select 0) == goggles player):{
 						removeGoggles player;
 						_isOK = true;
 					};
@@ -746,19 +770,19 @@ HS_confirmtrade = {
 			_price = _price + _calced;
 			diag_log format["%1",_x];
 		}forEach HS_BUYSELLARRAY;
-		if(EPOCH_playerCrypto >= _price && _price != 0)then{
+		if(EPOCH_playerCrypto >= _price && !(_price isEqualTo 0))then{
 			_pay = 0;
 			_isNOTOK = [];
 			{
-				diag_log format["CHECK: %1",(HS_trader_itemlist select _x)];
+//				diag_log format["CHECK: %1",(HS_trader_itemlist select _x)];
 				_isOK = false;
-				if(((HS_trader_itemlist select _x) select 3) == "cfgvehicles" && (((HS_trader_itemlist select _x) select 8) != "Backpack"))then{
+				if((HS_trader_itemlist select _x) select 3 == "cfgvehicles" && (HS_trader_itemlist select _x) select 8 != "Backpack")then{
 					diag_log format["%1",(HS_trader_itemlist select _x) select 4];
 					_spawnveh = 1;
 				}else{
 					switch((HS_trader_itemlist select _x) select 7)do{
 						case "Weapon":{
-							diag_log format["Weapon: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Weapon: %1",(HS_trader_itemlist select _x) select 4];
 							switch((HS_trader_itemlist select _x) select 8)do{
 								case "AssaultRifle":{
 									if(primaryWeapon player != "")then{
@@ -803,7 +827,7 @@ HS_confirmtrade = {
 									};
 								};
 								case "SniperRifle":{
-									if(primaryWeapon player != "")then{
+									if (primaryWeapon player != "")then{
 										systemChat localize "STR_HS_ALREADYHAVEWEAPON";
 										if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 											player addItem ((HS_trader_itemlist select _x)select 0);
@@ -841,7 +865,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Magazine":{
-							diag_log format["Magazine: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Magazine: %1",(HS_trader_itemlist select _x) select 4];
 							if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 								player addMagazine ((HS_trader_itemlist select _x)select 0);
 								_isOK = true;
@@ -850,7 +874,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Item":{
-							diag_log format["Item: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Item: %1",(HS_trader_itemlist select _x) select 4];
 							switch ((HS_trader_itemlist select _x) select 8)do{
 								case "Radio":{
 									_radios = ["EpochRadio0","EpochRadio1","EpochRadio2","EpochRadio3","EpochRadio4","EpochRadio5","EpochRadio6","EpochRadio7","EpochRadio8","EpochRadio9"];
@@ -877,7 +901,7 @@ HS_confirmtrade = {
 							};
 						};
 						case "Equipment":{
-							diag_log format["Equipment: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Equipment: %1",(HS_trader_itemlist select _x) select 4];
 							switch((HS_trader_itemlist select _x) select 8)do{
 								case "Backpack":{
 									if(backpack player != "")then{
@@ -924,7 +948,7 @@ HS_confirmtrade = {
 								case "Uniform":{
 									if(uniform player != "")then{
 										systemChat localize "STR_HS_ALREADYWEARINGUNIFORM";
-										diag_log str['Uniform',((HS_trader_itemlist select _x)select 0)];
+//										diag_log str['Uniform',((HS_trader_itemlist select _x)select 0)];
 										if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 											player addItem ((HS_trader_itemlist select _x)select 0);
 											_isOK = true;
@@ -939,7 +963,7 @@ HS_confirmtrade = {
 								case "Vest":{
 									if(vest player != "")then{
 										systemChat localize "STR_HS_ALREADYWEARINGVEST";
-										diag_log format["%1",(HS_trader_itemlist select _x)select 0];
+//										diag_log format["%1",(HS_trader_itemlist select _x)select 0];
 										if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 											player addItem ((HS_trader_itemlist select _x)select 0);
 											_isOK = true;
@@ -954,7 +978,7 @@ HS_confirmtrade = {
 							};
 						};
 						default{
-							diag_log format["Default: %1",(HS_trader_itemlist select _x) select 4];
+//							diag_log format["Default: %1",(HS_trader_itemlist select _x) select 4];
 							if (player canAdd ((HS_trader_itemlist select _x)select 0)) then {
 								player addItem ((HS_trader_itemlist select _x)select 0);
 								_isOK = true;
@@ -970,7 +994,7 @@ HS_confirmtrade = {
 					_tax = _itemWorth * (EPOCH_taxRate + _itemTax);
 					_cost = ceil(_itemWorth + _tax);
 					_pay = _pay + _cost;
-					diag_log format["BOUGHT: %1 (%2)",(HS_trader_itemlist select _x),_pay];
+					diag_log format["BOUGHT: (%2) %1",(HS_trader_itemlist select _x),_pay];
 				};
 			}forEach HS_BUYSELLARRAY;
 			if(count _isNOTOK > 0)then{
@@ -1025,7 +1049,7 @@ HS_confirmtrade = {
 			HALV_takegive = [player,(_pay*-1)];
 			publicVariableServer "HALV_takegive";
 		}else{
-			if(_price == 0)exitWith{};
+			if(_price isEqualTo 0)exitWith{};
 			titleText [localize "STR_HS_NOTENOGHCRYPTO","PLAIN DOWN"];
 		};
 	};
@@ -1034,7 +1058,6 @@ HS_confirmtrade = {
 		sleep 6.2;
 		player switchMove "";
 	};
-	closeDialog 0;
 	if (_spawnveh > 0)then{
 		switch (_vehiclespawnmode)do{
 			case 0:{
@@ -1048,8 +1071,9 @@ HS_confirmtrade = {
 			};
 		};
 	};
+	HS_istrading = nil;
 };
-//needs a check to only allow every 5-30sec
+
 HS_checkavailability = {
 	if(EPOCH_VehicleSlotCount <= 0)exitWith{
 		titleText ["Can't buy a saved vehicle, too many on the map!","PLAIN DOWN"];
@@ -1060,7 +1084,7 @@ HS_checkavailability = {
 HS_buyvehiclesaved = {
 	closeDialog 0;
 	{
-		if(((HS_trader_itemlist select _x) select 3) == "cfgvehicles" && ((HS_trader_itemlist select _x) select 8) != "Backpack")exitWith{
+		if((HS_trader_itemlist select _x) select 3 == "cfgvehicles" && (HS_trader_itemlist select _x) select 8 != "Backpack")exitWith{
 			HSPV_traderrequest = [(HS_trader_itemlist select _x),player,2];
 			publicVariableServer "HSPV_traderrequest";
 			HS_BUYSELLARRAY = [];
@@ -1071,7 +1095,7 @@ HS_buyvehiclesaved = {
 HS_buyvehicletemp = {
 	closeDialog 0;
 	{
-		if(((HS_trader_itemlist select _x) select 3) == "cfgvehicles" && ((HS_trader_itemlist select _x) select 8) != "Backpack")exitWith{
+		if((HS_trader_itemlist select _x) select 3 == "cfgvehicles" && (HS_trader_itemlist select _x) select 8 != "Backpack")exitWith{
 			HSPV_traderrequest = [(HS_trader_itemlist select _x),player,3];
 			publicVariableServer "HSPV_traderrequest";
 			HS_BUYSELLARRAY = [];

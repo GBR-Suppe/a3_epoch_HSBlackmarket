@@ -42,6 +42,8 @@ Install:
 - Add to your description.ext
   #include "trader\tradedialog.hpp"
   #include "trader\HSPricing.hpp"
+  #include "trader\Halv_defines.hpp"
+  
   
 - (optional) Open epoch.Mission/trader/init.sqf to configurate the HS Blackmarket
 
