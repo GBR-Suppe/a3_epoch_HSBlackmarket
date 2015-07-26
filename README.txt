@@ -82,3 +82,7 @@ scripts.txt      7 exec    add:
 - for infistar
 add these: 9999,9980 to the allowedDialogs.
 like this: _allowedDialogs = [-1,602,7777,7778,9999,9980];
+and
+/*  Remove Actions Plr
+/*  Remove Actions Objs
+^ must both be false.
