@@ -39,13 +39,12 @@ Install:
   [] execVM "trader\HALV_takegive_crypto_init.sqf";
   [] execVM "trader\resetvehicleammo.sqf";
   
-- Add to your description.ext
+- Add to your description.ext ( On the very top. And if you use Halv's spawn script as well, you need only 1x the Halv_defines.hpp )
   #include "trader\Halv_defines.hpp"
   #include "trader\tradedialog.hpp"
   #include "trader\HSPricing.hpp"
 
-  
-  
+
 - (optional) Open epoch.Mission/trader/init.sqf to configurate the HS Blackmarket
 
 - (optional) Open epoch.Mission/trader/HSPricing.hpp to configurate prices, or to add Items,Vehicles,Weapons and so on
@@ -79,10 +78,9 @@ scripts.txt      7 addItem    add:
 scripts.txt      7 exec    add:
 !="trader\init.sqf";"
 
-- for infistar
+- For infistar Server:
 add these: 9999,9980 to the allowedDialogs.
 like this: _allowedDialogs = [-1,602,7777,7778,9999,9980];
 and
-/*  Remove Actions Plr
-/*  Remove Actions Objs
+/*  Remove Actions Plr and /*  Remove Actions Objs
 ^ must both be false.
