@@ -41,7 +41,7 @@ switch(_type)do{
 					deleteVehicle _obj;
 					_vehHiveKey=format["%1:%2",(call EPOCH_fn_InstanceID),_vehSlot];
 					_VAL=[];
-					["Vehicle",_vehHiveKey,_VAL]call EPOCH_server_hiveSET;
+					["Vehicle",_vehHiveKey,_VAL]call EPOCH_fnc_server_hiveSET;
 					EPOCH_VehicleSlots pushBack _vehSlot;
 					EPOCH_VehicleSlotCount=count EPOCH_VehicleSlots;
 					publicVariable "EPOCH_VehicleSlotCount";
@@ -104,7 +104,7 @@ switch(_type)do{
 			_lockOwner=_plyrGroup;
 		};
 		_vehLockHiveKey=format["%1:%2",(call EPOCH_fn_InstanceID),_slot];
-		["VehicleLock",_vehLockHiveKey,EPOCH_vehicleLockTime,[_lockOwner]]call EPOCH_server_hiveSETEX;
+		["VehicleLock",_vehLockHiveKey,EPOCH_vehicleLockTime,[_lockOwner]]call EPOCH_fnc_server_hiveSETEX;
 		_colorsConfig=configFile >> "CfgVehicles" >> (_arr select 0) >> "availableColors";
 		if(isArray(_colorsConfig))then{
 			_textureSelectionIndex=configFile >> "CfgVehicles" >> (_arr select 0) >> "textureSelectionIndex";
